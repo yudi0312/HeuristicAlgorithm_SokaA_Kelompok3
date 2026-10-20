@@ -1,0 +1,108 @@
+services:
+  worker-1:
+    image: dralba-cloud:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dralba-worker-1
+    ports:
+      - "8081:8080"
+    environment:
+      - WORKER_ID=worker-1
+      - PORT=8080
+      - CAPACITY_MIPS=1000
+      - CORES=1
+      - WORKLOAD_SCALE_FACTOR=10
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health | grep UP || exit 1"]
+      interval: 3s
+      timeout: 2s
+      retries: 5
+    networks:
+      - dralba-net
+
+  worker-2:
+    image: dralba-cloud:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dralba-worker-2
+    ports:
+      - "8082:8080"
+    environment:
+      - WORKER_ID=worker-2
+      - PORT=8080
+      - CAPACITY_MIPS=2000
+      - CORES=1
+      - WORKLOAD_SCALE_FACTOR=10
+    deploy:
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 1024M
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health | grep UP || exit 1"]
+      interval: 3s
+      timeout: 2s
+      retries: 5
+    networks:
+      - dralba-net
+
+  worker-3:
+    image: dralba-cloud:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dralba-worker-3
+    ports:
+      - "8083:8080"
+    environment:
+      - WORKER_ID=worker-3
+      - PORT=8080
+      - CAPACITY_MIPS=3000
+      - CORES=2
+      - WORKLOAD_SCALE_FACTOR=10
+    deploy:
+      resources:
+        limits:
+          cpus: '1.50'
+          memory: 1536M
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health | grep UP || exit 1"]
+      interval: 3s
+      timeout: 2s
+      retries: 5
+    networks:
+      - dralba-net
+
+  scheduler:
+    image: dralba-cloud:latest
+    container_name: dralba-scheduler
+    depends_on:
+      worker-1:
+        condition: service_healthy
+      worker-2:
+        condition: service_healthy
+      worker-3:
+        condition: service_healthy
+    environment:
+      - WORKER_URLS=http://worker-1:8080,http://worker-2:8080,http://worker-3:8080
+      - WORKER_CAPACITIES=1000,2000,3000
+    volumes:
+      - ./results:/app/results
+    entrypoint: [
+      "java", "-cp", "app.jar", "org.example.dralba.benchmark.BenchmarkRunner",
+      "--dataset", "100",
+      "--output-dir", "/app/results"
+    ]
+    networks:
+      - dralba-net
+
+networks:
+  dralba-net:
+    driver: bridge

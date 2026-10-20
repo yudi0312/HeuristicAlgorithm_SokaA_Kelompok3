@@ -2,7 +2,7 @@ target/
 build/
 *.class
 *.log
-.kotlin
+dependency-reduced-pom.xml
 DraftProject_HeuristicAlgorithm.pdf
 
 ### IntelliJ IDEA ###

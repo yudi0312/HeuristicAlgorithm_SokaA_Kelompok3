@@ -1,0 +1,1022 @@
+[
+  {
+    "algorithmName": "DRALBA",
+    "datasetName": "GoCJ_100",
+    "totalTasks": 100,
+    "successfulTasks": 100,
+    "failedTasks": 0,
+    "makespanSeconds": 2.024,
+    "throughputTasksPerSec": 49.40711462450593,
+    "averageResponseTimeMs": 7.24,
+    "averageWaitingTimeMs": 0.06,
+    "averageResourceUtilizationPercent": 11.3500293972332,
+    "loadBalancingStdDevMs": 46.06337229114153,
+    "schedulingOverheadMs": 20.364713,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 28,
+        "totalBusyTimeMs": 187.319488,
+        "utilizationPercent": 9.254915415019763
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 35,
+        "totalBusyTimeMs": 208.100678,
+        "utilizationPercent": 10.281654051383398
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 37,
+        "totalBusyTimeMs": 293.753619,
+        "utilizationPercent": 14.513518725296443
+      }
+    }
+  },
+  {
+    "algorithmName": "FCFS",
+    "datasetName": "GoCJ_100",
+    "totalTasks": 100,
+    "successfulTasks": 100,
+    "failedTasks": 0,
+    "makespanSeconds": 3.131,
+    "throughputTasksPerSec": 31.938677738741617,
+    "averageResponseTimeMs": 5.3,
+    "averageWaitingTimeMs": 0.0,
+    "averageResourceUtilizationPercent": 5.627286841264771,
+    "loadBalancingStdDevMs": 71.43471953399626,
+    "schedulingOverheadMs": 3.929034,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 16,
+        "totalBusyTimeMs": 92.25941600000002,
+        "utilizationPercent": 2.9466437559885024
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 24,
+        "totalBusyTimeMs": 169.46210899999997,
+        "utilizationPercent": 5.4123956882785045
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 60,
+        "totalBusyTimeMs": 266.849528,
+        "utilizationPercent": 8.522821079527308
+      }
+    }
+  },
+  {
+    "algorithmName": "RoundRobin",
+    "datasetName": "GoCJ_100",
+    "totalTasks": 100,
+    "successfulTasks": 100,
+    "failedTasks": 0,
+    "makespanSeconds": 1.681,
+    "throughputTasksPerSec": 59.4883997620464,
+    "averageResponseTimeMs": 5.38,
+    "averageWaitingTimeMs": 0.01,
+    "averageResourceUtilizationPercent": 10.640683779496332,
+    "loadBalancingStdDevMs": 16.849163696560055,
+    "schedulingOverheadMs": 0.107225,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 34,
+        "totalBusyTimeMs": 201.213998,
+        "utilizationPercent": 11.969898750743607
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 33,
+        "totalBusyTimeMs": 174.86703000000003,
+        "utilizationPercent": 10.402559785841763
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 33,
+        "totalBusyTimeMs": 160.52865500000001,
+        "utilizationPercent": 9.54959280190363
+      }
+    }
+  },
+  {
+    "algorithmName": "DRALBA",
+    "datasetName": "GoCJ_200",
+    "totalTasks": 200,
+    "successfulTasks": 200,
+    "failedTasks": 0,
+    "makespanSeconds": 3.76,
+    "throughputTasksPerSec": 53.19148936170213,
+    "averageResponseTimeMs": 4.28,
+    "averageWaitingTimeMs": 0.0,
+    "averageResourceUtilizationPercent": 7.629167021276595,
+    "loadBalancingStdDevMs": 85.54145650534967,
+    "schedulingOverheadMs": 1.178854,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 57,
+        "totalBusyTimeMs": 184.960336,
+        "utilizationPercent": 4.919157872340426
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 69,
+        "totalBusyTimeMs": 281.334838,
+        "utilizationPercent": 7.482309521276595
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 74,
+        "totalBusyTimeMs": 394.274866,
+        "utilizationPercent": 10.486033670212764
+      }
+    }
+  },
+  {
+    "algorithmName": "FCFS",
+    "datasetName": "GoCJ_200",
+    "totalTasks": 200,
+    "successfulTasks": 200,
+    "failedTasks": 0,
+    "makespanSeconds": 5.429,
+    "throughputTasksPerSec": 36.83919690550746,
+    "averageResponseTimeMs": 4.965,
+    "averageWaitingTimeMs": 0.015,
+    "averageResourceUtilizationPercent": 5.982986504574201,
+    "loadBalancingStdDevMs": 130.305286547783,
+    "schedulingOverheadMs": 0.702103,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 33,
+        "totalBusyTimeMs": 168.248207,
+        "utilizationPercent": 3.0990644133357894
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 58,
+        "totalBusyTimeMs": 318.9338,
+        "utilizationPercent": 5.874632529010868
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 109,
+        "totalBusyTimeMs": 487.26700500000004,
+        "utilizationPercent": 8.975262571375945
+      }
+    }
+  },
+  {
+    "algorithmName": "RoundRobin",
+    "datasetName": "GoCJ_200",
+    "totalTasks": 200,
+    "successfulTasks": 200,
+    "failedTasks": 0,
+    "makespanSeconds": 3.347,
+    "throughputTasksPerSec": 59.755004481625335,
+    "averageResponseTimeMs": 5.02,
+    "averageWaitingTimeMs": 0.01,
+    "averageResourceUtilizationPercent": 9.877856458520068,
+    "loadBalancingStdDevMs": 57.1189208563624,
+    "schedulingOverheadMs": 0.048062,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 67,
+        "totalBusyTimeMs": 336.3373240000001,
+        "utilizationPercent": 10.048919151478938
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 67,
+        "totalBusyTimeMs": 397.529283,
+        "utilizationPercent": 11.877182043621154
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 66,
+        "totalBusyTimeMs": 257.96896,
+        "utilizationPercent": 7.707468180460113
+      }
+    }
+  },
+  {
+    "algorithmName": "DRALBA",
+    "datasetName": "GoCJ_300",
+    "totalTasks": 300,
+    "successfulTasks": 300,
+    "failedTasks": 0,
+    "makespanSeconds": 5.695,
+    "throughputTasksPerSec": 52.67778753292362,
+    "averageResponseTimeMs": 5.15,
+    "averageWaitingTimeMs": 0.006666666666666667,
+    "averageResourceUtilizationPercent": 9.03755686859819,
+    "loadBalancingStdDevMs": 172.38176198644854,
+    "schedulingOverheadMs": 10.966644,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 86,
+        "totalBusyTimeMs": 316.8729630000002,
+        "utilizationPercent": 5.564055539947326
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 104,
+        "totalBusyTimeMs": 490.207755,
+        "utilizationPercent": 8.607686654960492
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 110,
+        "totalBusyTimeMs": 736.9858730000002,
+        "utilizationPercent": 12.940928410886746
+      }
+    }
+  },
+  {
+    "algorithmName": "FCFS",
+    "datasetName": "GoCJ_300",
+    "totalTasks": 300,
+    "successfulTasks": 300,
+    "failedTasks": 0,
+    "makespanSeconds": 7.797,
+    "throughputTasksPerSec": 38.47633705271258,
+    "averageResponseTimeMs": 4.83,
+    "averageWaitingTimeMs": 0.016666666666666666,
+    "averageResourceUtilizationPercent": 5.99521575392245,
+    "loadBalancingStdDevMs": 180.79489690268554,
+    "schedulingOverheadMs": 2.302261,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 42,
+        "totalBusyTimeMs": 251.785505,
+        "utilizationPercent": 3.2292613184558165
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 103,
+        "totalBusyTimeMs": 456.33322,
+        "utilizationPercent": 5.852676927023214
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 155,
+        "totalBusyTimeMs": 694.2221920000002,
+        "utilizationPercent": 8.903709016288317
+      }
+    }
+  },
+  {
+    "algorithmName": "RoundRobin",
+    "datasetName": "GoCJ_300",
+    "totalTasks": 300,
+    "successfulTasks": 300,
+    "failedTasks": 0,
+    "makespanSeconds": 5.304,
+    "throughputTasksPerSec": 56.56108597285068,
+    "averageResponseTimeMs": 5.323333333333333,
+    "averageWaitingTimeMs": 0.16333333333333333,
+    "averageResourceUtilizationPercent": 9.37579493464052,
+    "loadBalancingStdDevMs": 132.22042117830227,
+    "schedulingOverheadMs": 0.198282,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 100,
+        "totalBusyTimeMs": 682.5378829999997,
+        "utilizationPercent": 12.868361293363495
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 100,
+        "totalBusyTimeMs": 382.61534299999994,
+        "utilizationPercent": 7.213713103318249
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 100,
+        "totalBusyTimeMs": 426.7232639999999,
+        "utilizationPercent": 8.045310407239818
+      }
+    }
+  },
+  {
+    "algorithmName": "DRALBA",
+    "datasetName": "GoCJ_400",
+    "totalTasks": 400,
+    "successfulTasks": 400,
+    "failedTasks": 0,
+    "makespanSeconds": 7.842,
+    "throughputTasksPerSec": 51.0073960724305,
+    "averageResponseTimeMs": 4.565,
+    "averageWaitingTimeMs": 0.0175,
+    "averageResourceUtilizationPercent": 7.713300212530819,
+    "loadBalancingStdDevMs": 222.2717771244761,
+    "schedulingOverheadMs": 1.386745,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 105,
+        "totalBusyTimeMs": 317.48811200000006,
+        "utilizationPercent": 4.048560469268045
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 142,
+        "totalBusyTimeMs": 638.2862110000001,
+        "utilizationPercent": 8.139329393011987
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 153,
+        "totalBusyTimeMs": 858.8566850000002,
+        "utilizationPercent": 10.952010775312424
+      }
+    }
+  },
+  {
+    "algorithmName": "FCFS",
+    "datasetName": "GoCJ_400",
+    "totalTasks": 400,
+    "successfulTasks": 400,
+    "failedTasks": 0,
+    "makespanSeconds": 9.357,
+    "throughputTasksPerSec": 42.7487442556375,
+    "averageResponseTimeMs": 4.3725,
+    "averageWaitingTimeMs": 0.1375,
+    "averageResourceUtilizationPercent": 5.959623964233552,
+    "loadBalancingStdDevMs": 213.83874703528934,
+    "schedulingOverheadMs": 1.062318,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 66,
+        "totalBusyTimeMs": 299.77078300000005,
+        "utilizationPercent": 3.203706134444801
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 149,
+        "totalBusyTimeMs": 549.7663160000003,
+        "utilizationPercent": 5.8754549107619995
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 185,
+        "totalBusyTimeMs": 823.3889439999999,
+        "utilizationPercent": 8.799710847493854
+      }
+    }
+  },
+  {
+    "algorithmName": "RoundRobin",
+    "datasetName": "GoCJ_400",
+    "totalTasks": 400,
+    "successfulTasks": 400,
+    "failedTasks": 0,
+    "makespanSeconds": 6.698,
+    "throughputTasksPerSec": 59.71931919976112,
+    "averageResponseTimeMs": 4.355,
+    "averageWaitingTimeMs": 0.0075,
+    "averageResourceUtilizationPercent": 8.587125370757438,
+    "loadBalancingStdDevMs": 50.37179738313531,
+    "schedulingOverheadMs": 0.131377,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 134,
+        "totalBusyTimeMs": 645.9411779999996,
+        "utilizationPercent": 9.643791848312922
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 133,
+        "totalBusyTimeMs": 532.771028,
+        "utilizationPercent": 7.954180770379218
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 133,
+        "totalBusyTimeMs": 546.7847659999999,
+        "utilizationPercent": 8.163403493580171
+      }
+    }
+  },
+  {
+    "algorithmName": "DRALBA",
+    "datasetName": "GoCJ_500",
+    "totalTasks": 500,
+    "successfulTasks": 500,
+    "failedTasks": 0,
+    "makespanSeconds": 9.624,
+    "throughputTasksPerSec": 51.95344970906068,
+    "averageResponseTimeMs": 4.44,
+    "averageWaitingTimeMs": 0.014,
+    "averageResourceUtilizationPercent": 7.6655245393460785,
+    "loadBalancingStdDevMs": 217.8656741960168,
+    "schedulingOverheadMs": 2.687977,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 135,
+        "totalBusyTimeMs": 483.44747400000006,
+        "utilizationPercent": 5.023352805486285
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 176,
+        "totalBusyTimeMs": 714.1947629999997,
+        "utilizationPercent": 7.420976340398999
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 189,
+        "totalBusyTimeMs": 1015.5480079999999,
+        "utilizationPercent": 10.55224447215295
+      }
+    }
+  },
+  {
+    "algorithmName": "FCFS",
+    "datasetName": "GoCJ_500",
+    "totalTasks": 500,
+    "successfulTasks": 500,
+    "failedTasks": 0,
+    "makespanSeconds": 12.664,
+    "throughputTasksPerSec": 39.481996209728365,
+    "averageResponseTimeMs": 4.246,
+    "averageWaitingTimeMs": 0.012,
+    "averageResourceUtilizationPercent": 5.542951408191197,
+    "loadBalancingStdDevMs": 266.7773737684171,
+    "schedulingOverheadMs": 2.78463,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 96,
+        "totalBusyTimeMs": 371.77642100000014,
+        "utilizationPercent": 2.9356950489576765
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 149,
+        "totalBusyTimeMs": 708.9696329999998,
+        "utilizationPercent": 5.598307272583701
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 255,
+        "totalBusyTimeMs": 1025.1320449999998,
+        "utilizationPercent": 8.094851903032216
+      }
+    }
+  },
+  {
+    "algorithmName": "RoundRobin",
+    "datasetName": "GoCJ_500",
+    "totalTasks": 500,
+    "successfulTasks": 500,
+    "failedTasks": 0,
+    "makespanSeconds": 8.701,
+    "throughputTasksPerSec": 57.46465923457074,
+    "averageResponseTimeMs": 5.232,
+    "averageWaitingTimeMs": 0.008,
+    "averageResourceUtilizationPercent": 8.996173826763208,
+    "loadBalancingStdDevMs": 87.30565278673949,
+    "schedulingOverheadMs": 0.245788,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 167,
+        "totalBusyTimeMs": 884.3764370000006,
+        "utilizationPercent": 10.16407811745777
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 167,
+        "totalBusyTimeMs": 792.6808089999997,
+        "utilizationPercent": 9.110226514193767
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 166,
+        "totalBusyTimeMs": 671.2140079999999,
+        "utilizationPercent": 7.714216848638086
+      }
+    }
+  },
+  {
+    "algorithmName": "DRALBA",
+    "datasetName": "GoCJ_600",
+    "totalTasks": 600,
+    "successfulTasks": 600,
+    "failedTasks": 0,
+    "makespanSeconds": 11.422,
+    "throughputTasksPerSec": 52.53020486779898,
+    "averageResponseTimeMs": 4.435,
+    "averageWaitingTimeMs": 0.013333333333333334,
+    "averageResourceUtilizationPercent": 7.733664107278345,
+    "loadBalancingStdDevMs": 342.70896406052714,
+    "schedulingOverheadMs": 7.337958,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 167,
+        "totalBusyTimeMs": 458.7067319999998,
+        "utilizationPercent": 4.015993101033093
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 209,
+        "totalBusyTimeMs": 893.3198019999999,
+        "utilizationPercent": 7.821045368586936
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 224,
+        "totalBusyTimeMs": 1297.9908089999983,
+        "utilizationPercent": 11.363953852215008
+      }
+    }
+  },
+  {
+    "algorithmName": "FCFS",
+    "datasetName": "GoCJ_600",
+    "totalTasks": 600,
+    "successfulTasks": 600,
+    "failedTasks": 0,
+    "makespanSeconds": 15.874,
+    "throughputTasksPerSec": 37.79765654529419,
+    "averageResponseTimeMs": 4.558333333333334,
+    "averageWaitingTimeMs": 0.008333333333333333,
+    "averageResourceUtilizationPercent": 5.642395210196968,
+    "loadBalancingStdDevMs": 352.5388195997437,
+    "schedulingOverheadMs": 2.415055,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 92,
+        "totalBusyTimeMs": 463.233394,
+        "utilizationPercent": 2.918189454453824
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 189,
+        "totalBusyTimeMs": 897.017573,
+        "utilizationPercent": 5.650860356557893
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 319,
+        "totalBusyTimeMs": 1326.77048,
+        "utilizationPercent": 8.358135819579186
+      }
+    }
+  },
+  {
+    "algorithmName": "RoundRobin",
+    "datasetName": "GoCJ_600",
+    "totalTasks": 600,
+    "successfulTasks": 600,
+    "failedTasks": 0,
+    "makespanSeconds": 10.197,
+    "throughputTasksPerSec": 58.84083553986467,
+    "averageResponseTimeMs": 4.7,
+    "averageWaitingTimeMs": 0.01,
+    "averageResourceUtilizationPercent": 9.12328722500082,
+    "loadBalancingStdDevMs": 110.49723272768854,
+    "schedulingOverheadMs": 0.554014,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 200,
+        "totalBusyTimeMs": 831.1385220000005,
+        "utilizationPercent": 8.15081418064137
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 200,
+        "totalBusyTimeMs": 875.2912109999999,
+        "utilizationPercent": 8.583811032656662
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 200,
+        "totalBusyTimeMs": 1084.4750620000004,
+        "utilizationPercent": 10.635236461704427
+      }
+    }
+  },
+  {
+    "algorithmName": "DRALBA",
+    "datasetName": "GoCJ_700",
+    "totalTasks": 700,
+    "successfulTasks": 700,
+    "failedTasks": 0,
+    "makespanSeconds": 13.443,
+    "throughputTasksPerSec": 52.07171018373875,
+    "averageResponseTimeMs": 3.8842857142857143,
+    "averageWaitingTimeMs": 0.008571428571428572,
+    "averageResourceUtilizationPercent": 6.716284190036946,
+    "loadBalancingStdDevMs": 344.7819543293366,
+    "schedulingOverheadMs": 4.760843,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 183,
+        "totalBusyTimeMs": 474.5035290000001,
+        "utilizationPercent": 3.5297443204641827
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 250,
+        "totalBusyTimeMs": 915.3395409999998,
+        "utilizationPercent": 6.809042185524063
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 267,
+        "totalBusyTimeMs": 1318.7671810000002,
+        "utilizationPercent": 9.810066064122593
+      }
+    }
+  },
+  {
+    "algorithmName": "FCFS",
+    "datasetName": "GoCJ_700",
+    "totalTasks": 700,
+    "successfulTasks": 700,
+    "failedTasks": 0,
+    "makespanSeconds": 17.997,
+    "throughputTasksPerSec": 38.895371450797356,
+    "averageResponseTimeMs": 4.664285714285715,
+    "averageWaitingTimeMs": 0.005714285714285714,
+    "averageResourceUtilizationPercent": 6.00110041488396,
+    "loadBalancingStdDevMs": 494.0548210832252,
+    "schedulingOverheadMs": 14.862896,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 108,
+        "totalBusyTimeMs": 480.39634200000006,
+        "utilizationPercent": 2.6693134522420405
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 230,
+        "totalBusyTimeMs": 1069.2236559999997,
+        "utilizationPercent": 5.941121609157079
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 362,
+        "totalBusyTimeMs": 1690.4341269999989,
+        "utilizationPercent": 9.392866183252758
+      }
+    }
+  },
+  {
+    "algorithmName": "RoundRobin",
+    "datasetName": "GoCJ_700",
+    "totalTasks": 700,
+    "successfulTasks": 700,
+    "failedTasks": 0,
+    "makespanSeconds": 11.684,
+    "throughputTasksPerSec": 59.91098938719617,
+    "averageResponseTimeMs": 5.045714285714285,
+    "averageWaitingTimeMs": 0.008571428571428572,
+    "averageResourceUtilizationPercent": 10.09471096656396,
+    "loadBalancingStdDevMs": 54.49935072789636,
+    "schedulingOverheadMs": 0.388134,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 234,
+        "totalBusyTimeMs": 1114.3775329999999,
+        "utilizationPercent": 9.537637221841834
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 233,
+        "totalBusyTimeMs": 1176.2627659999998,
+        "utilizationPercent": 10.067295155768571
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 233,
+        "totalBusyTimeMs": 1247.7577889999998,
+        "utilizationPercent": 10.679200522081477
+      }
+    }
+  },
+  {
+    "algorithmName": "DRALBA",
+    "datasetName": "GoCJ_800",
+    "totalTasks": 800,
+    "successfulTasks": 800,
+    "failedTasks": 0,
+    "makespanSeconds": 15.522,
+    "throughputTasksPerSec": 51.539750032212346,
+    "averageResponseTimeMs": 4.74625,
+    "averageWaitingTimeMs": 0.01125,
+    "averageResourceUtilizationPercent": 8.266025550831074,
+    "loadBalancingStdDevMs": 500.5705305892303,
+    "schedulingOverheadMs": 4.784369,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 211,
+        "totalBusyTimeMs": 663.9963369999998,
+        "utilizationPercent": 4.277775653910577
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 284,
+        "totalBusyTimeMs": 1295.2030270000002,
+        "utilizationPercent": 8.344305031568098
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 305,
+        "totalBusyTimeMs": 1889.9580939999983,
+        "utilizationPercent": 12.175995967014549
+      }
+    }
+  },
+  {
+    "algorithmName": "FCFS",
+    "datasetName": "GoCJ_800",
+    "totalTasks": 800,
+    "successfulTasks": 800,
+    "failedTasks": 0,
+    "makespanSeconds": 19.433,
+    "throughputTasksPerSec": 41.167086914012245,
+    "averageResponseTimeMs": 4.99,
+    "averageWaitingTimeMs": 0.0075,
+    "averageResourceUtilizationPercent": 6.849476395821537,
+    "loadBalancingStdDevMs": 464.24863165306573,
+    "schedulingOverheadMs": 4.364359,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 138,
+        "totalBusyTimeMs": 777.6883059999999,
+        "utilizationPercent": 4.0018952606391185
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 273,
+        "totalBusyTimeMs": 1301.7602219999992,
+        "utilizationPercent": 6.698709525034731
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 389,
+        "totalBusyTimeMs": 1913.7277159999987,
+        "utilizationPercent": 9.847824401790762
+      }
+    }
+  },
+  {
+    "algorithmName": "RoundRobin",
+    "datasetName": "GoCJ_800",
+    "totalTasks": 800,
+    "successfulTasks": 800,
+    "failedTasks": 0,
+    "makespanSeconds": 13.641,
+    "throughputTasksPerSec": 58.64672677956162,
+    "averageResponseTimeMs": 4.99375,
+    "averageWaitingTimeMs": 0.00625,
+    "averageResourceUtilizationPercent": 9.081141585416512,
+    "loadBalancingStdDevMs": 246.33578391880562,
+    "schedulingOverheadMs": 0.406474,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 267,
+        "totalBusyTimeMs": 1584.184264999999,
+        "utilizationPercent": 11.613402719741947
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 267,
+        "totalBusyTimeMs": 1105.1962669999998,
+        "utilizationPercent": 8.102017938567553
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 266,
+        "totalBusyTimeMs": 1026.8950390000005,
+        "utilizationPercent": 7.5280040979400376
+      }
+    }
+  },
+  {
+    "algorithmName": "DRALBA",
+    "datasetName": "GoCJ_900",
+    "totalTasks": 900,
+    "successfulTasks": 900,
+    "failedTasks": 0,
+    "makespanSeconds": 17.154,
+    "throughputTasksPerSec": 52.46589716684155,
+    "averageResponseTimeMs": 4.421111111111111,
+    "averageWaitingTimeMs": 0.005555555555555556,
+    "averageResourceUtilizationPercent": 7.754799628852357,
+    "loadBalancingStdDevMs": 521.993837608353,
+    "schedulingOverheadMs": 1.923489,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 244,
+        "totalBusyTimeMs": 688.077935,
+        "utilizationPercent": 4.011180686720298
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 316,
+        "totalBusyTimeMs": 1336.0397770000004,
+        "utilizationPercent": 7.788502838987993
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 340,
+        "totalBusyTimeMs": 1966.6572729999998,
+        "utilizationPercent": 11.46471536084878
+      }
+    }
+  },
+  {
+    "algorithmName": "FCFS",
+    "datasetName": "GoCJ_900",
+    "totalTasks": 900,
+    "successfulTasks": 900,
+    "failedTasks": 0,
+    "makespanSeconds": 22.128,
+    "throughputTasksPerSec": 40.67245119305857,
+    "averageResponseTimeMs": 4.111111111111111,
+    "averageWaitingTimeMs": 0.0077777777777777776,
+    "averageResourceUtilizationPercent": 5.524259490238611,
+    "loadBalancingStdDevMs": 495.4123789922188,
+    "schedulingOverheadMs": 1.252005,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 147,
+        "totalBusyTimeMs": 609.9288320000002,
+        "utilizationPercent": 2.7563667389732474
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 294,
+        "totalBusyTimeMs": 1234.0260689999993,
+        "utilizationPercent": 5.576762784707155
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 459,
+        "totalBusyTimeMs": 1823.2695190000002,
+        "utilizationPercent": 8.239648947035432
+      }
+    }
+  },
+  {
+    "algorithmName": "RoundRobin",
+    "datasetName": "GoCJ_900",
+    "totalTasks": 900,
+    "successfulTasks": 900,
+    "failedTasks": 0,
+    "makespanSeconds": 14.69,
+    "throughputTasksPerSec": 61.26616746085773,
+    "averageResponseTimeMs": 4.296666666666667,
+    "averageWaitingTimeMs": 0.005555555555555556,
+    "averageResourceUtilizationPercent": 8.710085198547766,
+    "loadBalancingStdDevMs": 53.76517830347244,
+    "schedulingOverheadMs": 0.341492,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 300,
+        "totalBusyTimeMs": 1351.170465,
+        "utilizationPercent": 9.197892886317222
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 300,
+        "totalBusyTimeMs": 1221.6641430000009,
+        "utilizationPercent": 8.316297773995922
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 300,
+        "totalBusyTimeMs": 1265.6999389999999,
+        "utilizationPercent": 8.616064935330156
+      }
+    }
+  },
+  {
+    "algorithmName": "DRALBA",
+    "datasetName": "GoCJ_1000",
+    "totalTasks": 1000,
+    "successfulTasks": 1000,
+    "failedTasks": 0,
+    "makespanSeconds": 18.952,
+    "throughputTasksPerSec": 52.76487969607429,
+    "averageResponseTimeMs": 4.405,
+    "averageWaitingTimeMs": 0.01,
+    "averageResourceUtilizationPercent": 7.74675085479105,
+    "loadBalancingStdDevMs": 550.4994501343612,
+    "schedulingOverheadMs": 5.806872,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 268,
+        "totalBusyTimeMs": 781.4998119999992,
+        "utilizationPercent": 4.123574356268463
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 355,
+        "totalBusyTimeMs": 1493.7804249999995,
+        "utilizationPercent": 7.88191444174757
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 377,
+        "totalBusyTimeMs": 2129.2124290000006,
+        "utilizationPercent": 11.234763766357116
+      }
+    }
+  },
+  {
+    "algorithmName": "FCFS",
+    "datasetName": "GoCJ_1000",
+    "totalTasks": 1000,
+    "successfulTasks": 1000,
+    "failedTasks": 0,
+    "makespanSeconds": 25.315,
+    "throughputTasksPerSec": 39.502271380604384,
+    "averageResponseTimeMs": 4.391,
+    "averageWaitingTimeMs": 0.008,
+    "averageResourceUtilizationPercent": 5.76546247810916,
+    "loadBalancingStdDevMs": 613.819321860568,
+    "schedulingOverheadMs": 2.790533,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 194,
+        "totalBusyTimeMs": 682.7200300000001,
+        "utilizationPercent": 2.6968991902034367
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 289,
+        "totalBusyTimeMs": 1512.386426000001,
+        "utilizationPercent": 5.974269903219439
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 517,
+        "totalBusyTimeMs": 2183.474023,
+        "utilizationPercent": 8.625218340904603
+      }
+    }
+  },
+  {
+    "algorithmName": "RoundRobin",
+    "datasetName": "GoCJ_1000",
+    "totalTasks": 1000,
+    "successfulTasks": 1000,
+    "failedTasks": 0,
+    "makespanSeconds": 16.562,
+    "throughputTasksPerSec": 60.37918125830213,
+    "averageResponseTimeMs": 4.605,
+    "averageWaitingTimeMs": 0.011,
+    "averageResourceUtilizationPercent": 9.127066630439158,
+    "loadBalancingStdDevMs": 43.30953726143164,
+    "schedulingOverheadMs": 0.245224,
+    "workerDetails": {
+      "worker-1": {
+        "workerId": "worker-1",
+        "tasksExecuted": 334,
+        "totalBusyTimeMs": 1527.393676,
+        "utilizationPercent": 9.22227796159884
+      },
+      "worker-2": {
+        "workerId": "worker-2",
+        "tasksExecuted": 333,
+        "totalBusyTimeMs": 1554.9953769999993,
+        "utilizationPercent": 9.388934772370481
+      },
+      "worker-3": {
+        "workerId": "worker-3",
+        "tasksExecuted": 333,
+        "totalBusyTimeMs": 1452.4852730000011,
+        "utilizationPercent": 8.769987157348154
+      }
+    }
+  }
+]

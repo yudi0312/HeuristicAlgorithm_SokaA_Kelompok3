@@ -25,6 +25,7 @@ public class TaskSchedulingDRALBA {
         CloudSim simulation = new CloudSim();
 
         // 1. MEMBANGUN DATACENTER & HOST
+        // parameter: jumlah PE, RAM (MB), Storage (MB), Bandwidth (MB/s)
         Host host1 = createHost(4, 8192, 500000, 10000);
         Host host2 = createHost(8, 16384, 1000000, 10000);
         Host host3 = createHost(4, 16384, 1000000, 10000);
@@ -37,6 +38,7 @@ public class TaskSchedulingDRALBA {
         List<Vm> vmList = new ArrayList<>();
 
         // 2. MEMBUAT 8 VM HETEROGEN
+        // parameter: MIPS, jumlah PE, RAM (MB)
         vmList.add(new VmSimple(1000, 1).setRam(2048));
         vmList.add(new VmSimple(1000, 1).setRam(2048));
         vmList.add(new VmSimple(2000, 2).setRam(4096));
