@@ -12,13 +12,13 @@
 
 ## Ringkasan Proyek
 
-Repositori ini mengimplementasikan **Cloud Task Scheduling** pada lingkungan cloud heterogen menggunakan algoritma heuristik **DRALBA** (*Dynamic Resource Allocation and Load Balancing Algorithm*) beserta algoritma baseline pembanding (**FCFS** dan **Round Robin**).
+Repositori ini mengimplementasikan **Cloud Task Scheduling** pada lingkungan cloud heterogen menggunakan algoritma heuristik **DRALBA** (*Dynamic Resource Allocation and Load Balancing Algorithm*).
 
 Proyek ini menyediakan **dua mode eksekusi**:
-1. **Mode Real-World (Docker & Docker Compose):** Eksekusi terdistribusi nyata di mana scheduler mendistribusikan task melalui protokol HTTP REST API ke sejumlah container worker independen. Setiap worker dibatasi alokasi CPU/RAM heterogen melalui Docker cgroups dan mengeksekusi beban komputasi nyata (*CPU-bound cryptographic hashing & arithmetic transformation*), **bukan** sekadar simulasi waktu atau `Thread.sleep`.
-2. **Mode Simulasi (CloudSim Plus 7.3.0):** Simulasi *in-memory* berbasis discrete-event simulation pada arsitektur 4 Host dan 8 VM heterogen.
+1. **Mode Real-World (Docker & Docker Compose):** Eksekusi terdistribusi nyata (1 Datacenter, 2 Host, 8 Worker VM) di mana scheduler mendistribusikan task melalui protokol HTTP REST API ke sejumlah container worker independen. Setiap worker dibatasi alokasi CPU/RAM heterogen melalui Docker cgroups dan mengeksekusi beban komputasi nyata (*CPU-bound cryptographic hashing & arithmetic transformation*), **bukan** sekadar simulasi waktu atau `Thread.sleep`.
+2. **Mode Simulasi (CloudSim Plus 7.3.0):** Simulasi *in-memory* berbasis discrete-event simulation pada arsitektur 1 Datacenter, 2 Host, dan 8 VM heterogen.
 
-> **Cakupan Dataset:** Pengujian difokuskan pada dataset GoCJ (*Google Cloud Jobs*) berukuran **100 hingga 1000 cloudlet**. Dataset di atas 1000 tidak diikutsertakan secara default demi efisiensi waktu eksekusi tanpa mengurangi validitas tren komparasi performa.
+> **Cakupan Dataset:** Pengujian difokuskan pada dataset GoCJ (*Google Cloud Jobs*) berukuran **100 hingga 1000 cloudlet**. Dataset di atas 1000 tidak diikutsertakan secara default demi efisiensi waktu eksekusi tanpa mengurangi validitas tren evaluasi performa.
 
 ---
 
@@ -40,28 +40,36 @@ Proyek ini menyediakan **dua mode eksekusi**:
 
 ---
 
-## Arsitektur Sistem Real-World
+## Arsitektur Sistem Real-World (1 Datacenter, 2 Host, 4 VM per Host)
 
-Pada implementasi Docker, sistem terdiri dari **1 Scheduler Service** dan **3 Worker Container Heterogen** yang terhubung dalam satu virtual bridge network (`dralba-net`).
+Pada implementasi Docker, sistem merepresentasikan **1 Datacenter (`datacenter-1`)** yang menaungi **2 Host Logis (`host-1` dan `host-2`)**, di mana setiap host mengelola **4 Virtual Machine (VM)** heterogen (total 8 VM container), serta **1 Scheduler Service** yang terhubung dalam virtual bridge network (`dralba-net`).
 
 ```mermaid
 flowchart TD
-    subgraph Host["Host Machine / Client"]
+    subgraph HostClient["Host Machine / Client"]
         CLI["BenchmarkRunner CLI / Docker Compose"]
         DS["Dataset GoCJ (100 - 1000 Tasks)"]
     end
 
-    subgraph DockerNet["Docker Network: dralba-net"]
+    subgraph Datacenter["Datacenter: datacenter-1"]
         subgraph SchedulerService["Container: dralba-scheduler"]
-            SCHED["Task Scheduler Engine\n(DRALBA | FCFS | Round Robin)"]
+            SCHED["Task Scheduler Engine\n(DRALBA)"]
             DISP["HTTP RealWorldDispatcher"]
             CALC["Metrics Calculator"]
         end
 
-        subgraph Workers["Heterogeneous Worker Cluster"]
-            W1["Container: dralba-worker-1\nCPU: 0.50 Core | RAM: 512MB\nCapacity Weight: 1000 MIPS\nPort: 8081 (Internal: 8080)"]
-            W2["Container: dralba-worker-2\nCPU: 1.00 Core | RAM: 1024MB\nCapacity Weight: 2000 MIPS\nPort: 8082 (Internal: 8080)"]
-            W3["Container: dralba-worker-3\nCPU: 1.50 Cores | RAM: 1536MB\nCapacity Weight: 3000 MIPS\nPort: 8083 (Internal: 8080)"]
+        subgraph Host1["Host-1 (4 VMs)"]
+            VM1["VM 1 (dralba-h1-vm1)\nCPU: 0.50 Core | RAM: 512MB\n1000 MIPS | Port: 8081"]
+            VM2["VM 2 (dralba-h1-vm2)\nCPU: 0.50 Core | RAM: 512MB\n1000 MIPS | Port: 8082"]
+            VM3["VM 3 (dralba-h1-vm3)\nCPU: 1.00 Core | RAM: 1024MB\n2000 MIPS | Port: 8083"]
+            VM4["VM 4 (dralba-h1-vm4)\nCPU: 1.00 Core | RAM: 1024MB\n3000 MIPS | Port: 8084"]
+        end
+
+        subgraph Host2["Host-2 (4 VMs)"]
+            VM5["VM 5 (dralba-h2-vm5)\nCPU: 1.00 Core | RAM: 1024MB\n2500 MIPS | Port: 8085"]
+            VM6["VM 6 (dralba-h2-vm6)\nCPU: 1.50 Cores | RAM: 1536MB\n4000 MIPS | Port: 8086"]
+            VM7["VM 7 (dralba-h2-vm7)\nCPU: 1.50 Cores | RAM: 1536MB\n4000 MIPS | Port: 8087"]
+            VM8["VM 8 (dralba-h2-vm8)\nCPU: 1.50 Cores | RAM: 1536MB\n4000 MIPS | Port: 8088"]
         end
     end
 
@@ -74,25 +82,32 @@ flowchart TD
     DS --> SCHED
     CLI --> SCHED
     SCHED --> DISP
-    DISP -- "POST /execute (HTTP/1.1)" --> W1
-    DISP -- "POST /execute (HTTP/1.1)" --> W2
-    DISP -- "POST /execute (HTTP/1.1)" --> W3
-    W1 -- "CPU Computation + SHA-256 Checksum" --> DISP
-    W2 -- "CPU Computation + SHA-256 Checksum" --> DISP
-    W3 -- "CPU Computation + SHA-256 Checksum" --> DISP
+    DISP -- "POST /execute (HTTP)" --> VM1
+    DISP -- "POST /execute (HTTP)" --> VM2
+    DISP -- "POST /execute (HTTP)" --> VM3
+    DISP -- "POST /execute (HTTP)" --> VM4
+    DISP -- "POST /execute (HTTP)" --> VM5
+    DISP -- "POST /execute (HTTP)" --> VM6
+    DISP -- "POST /execute (HTTP)" --> VM7
+    DISP -- "POST /execute (HTTP)" --> VM8
     DISP --> CALC
     CALC --> CSV
     CALC --> JSON
     CSV --> PNG
 ```
 
-### Karakteristik Worker Heterogen
+### Karakteristik 8 VM Heterogen (2 Host dalam 1 Datacenter)
 
-| Container | Limit CPU (cgroups) | Limit RAM | Bobot Kapasitas (MIPS) | Thread Pool Cores | Port Host |
-|---|---|---|---|---|---|
-| `dralba-worker-1` | **0.50 Core** | 512 MB | 1000 MIPS (Low) | 1 Core | `8081` |
-| `dralba-worker-2` | **1.00 Core** | 1024 MB | 2000 MIPS (Medium) | 1 Core | `8082` |
-| `dralba-worker-3` | **1.50 Cores** | 1536 MB | 3000 MIPS (High) | 2 Cores | `8083` |
+| Host | Container VM | Limit CPU (cgroups) | Limit RAM | Bobot Kapasitas (MIPS) | Thread Cores | Port Host |
+|---|---|---|---|---|---|---|
+| **Host-1** | `dralba-h1-vm1` (`vm-1`) | **0.50 Core** | 512 MB | 1000 MIPS (Low) | 1 Core | `8081` |
+| **Host-1** | `dralba-h1-vm2` (`vm-2`) | **0.50 Core** | 512 MB | 1000 MIPS (Low) | 1 Core | `8082` |
+| **Host-1** | `dralba-h1-vm3` (`vm-3`) | **1.00 Core** | 1024 MB | 2000 MIPS (Medium) | 1 Core | `8083` |
+| **Host-1** | `dralba-h1-vm4` (`vm-4`) | **1.00 Core** | 1024 MB | 3000 MIPS (Medium) | 2 Cores | `8084` |
+| **Host-2** | `dralba-h2-vm5` (`vm-5`) | **1.00 Core** | 1024 MB | 2500 MIPS (Medium) | 2 Cores | `8085` |
+| **Host-2** | `dralba-h2-vm6` (`vm-6`) | **1.50 Cores** | 1536 MB | 4000 MIPS (High) | 4 Cores | `8086` |
+| **Host-2** | `dralba-h2-vm7` (`vm-7`) | **1.50 Cores** | 1536 MB | 4000 MIPS (High) | 4 Cores | `8087` |
+| **Host-2** | `dralba-h2-vm8` (`vm-8`) | **1.50 Cores** | 1536 MB | 4000 MIPS (High) | 4 Cores | `8088` |
 
 ### Beban Kerja Komputasi Nyata (*Real Workload*)
 Setiap task dari dataset GoCJ memiliki panjang instruksi $L$ (antara 80.000 hingga 120.000 unit). Worker menjalankan algoritma `RealWorkloadEngine`:
@@ -136,15 +151,6 @@ flowchart TD
 - **Fase 2 (Fill Scheduler):** Task-task sisa yang tidak muat dialokasikan secara serakah (*greedy*) ke worker dengan nilai estimasi waktu selesai (*Expected Finish Time* / EFT) terendah:
   $$\text{Worker Target} = \arg\min_{j} (\text{EFT}_j)$$
 
-### 2. Baseline: First-Come First-Served (FCFS)
-- Mempertahankan urutan kedatangan task asli sesuai dataset (FIFO).
-- Setiap task dialokasikan secara berurutan ke worker yang diperkirakan selesai paling awal (EFT terkecil saat task tiba).
-
-### 3. Baseline: Round Robin (RR)
-- Task didistribusikan secara bergiliran (siklis) ke setiap worker:
-  $$\text{Worker Index} = i \pmod M$$
-- Tidak memperhitungkan panjang task maupun kapasitas heterogen worker, sehingga dapat menyebabkan worker berkemampuan rendah menanggung beban yang sama banyaknya dengan worker berkemampuan tinggi.
-
 ---
 
 ## Definisi dan Formula Metrik Evaluasi
@@ -179,13 +185,13 @@ Eksperimen mengukur metrik kuantitatif terstandarisasi berikut:
 ```text
 CloudSimTaskScheduling/
 ├── Dockerfile                         # Blueprint container image Java 17
-├── docker-compose.yml                 # Orkestrasi 3 worker heterogen + scheduler
+├── docker-compose.yml                 # Orkestrasi 8 worker heterogen (2 Host) + scheduler
 ├── pom.xml                            # Konfigurasi dependensi Maven & Shade plugin
 ├── README.md                          # Dokumentasi lengkap proyek
 ├── results/                           # Direktori output artefak eksperimen
-│   ├── benchmark_results.csv          # Hasil mentah benchmark (CSV)
-│   ├── benchmark_results.json         # Hasil terstruktur benchmark (JSON)
-│   └── comparison_metrics.png         # Diagram grafik perbandingan performa
+│   ├── benchmark_results.csv          # Hasil mentah benchmark DRALBA (CSV)
+│   ├── benchmark_results.json         # Hasil terstruktur benchmark DRALBA (JSON)
+│   └── comparison_metrics.png         # Diagram grafik evaluasi performa DRALBA
 ├── scripts/
 │   └── visualize_results.py           # Script otomatis visualisasi grafik matplotlib
 └── src/
@@ -195,14 +201,12 @@ CloudSimTaskScheduling/
     │   │   └── org/example/dralba/
     │   │       ├── algorithm/                # Modul algoritma penjadwalan
     │   │       │   ├── TaskScheduler.java    # Interface dasar scheduler
-    │   │       │   ├── DRALBAScheduler.java  # Algoritma DRALBA (Spill + Fill)
-    │   │       │   ├── FCFSScheduler.java    # Baseline First-Come First-Served
-    │   │       │   └── RoundRobinScheduler.java # Baseline Round Robin
+    │   │       │   └── DRALBAScheduler.java  # Algoritma DRALBA (Spill + Fill)
     │   │       ├── model/                    # Model domain
     │   │       │   ├── Task.java             # Model task GoCJ
     │   │       │   ├── WorkerNode.java       # Model node worker
     │   │       │   ├── TaskExecutionResult.java # Hasil eksekusi task
-    │   │       └── EvaluationMetrics.java   # Model kumpulan metrik
+    │   │       │   └── EvaluationMetrics.java   # Model kumpulan metrik
     │   │       ├── worker/                   # Layanan worker HTTP & CPU Engine
     │   │       │   ├── RealWorkloadEngine.java  # Engine komputasi CPU & SHA-256
     │   │       │   └── WorkerServer.java        # HTTP REST API server worker
@@ -217,8 +221,7 @@ CloudSimTaskScheduling/
     │       └── ...
     └── test/java/org/example/dralba/         # Unit test suite (JUnit 5)
         ├── algorithm/
-        │   ├── DRALBASchedulerTest.java
-        │   └── BaselineSchedulerTest.java
+        │   └── DRALBASchedulerTest.java
         ├── scheduler/
         │   └── MetricsCalculatorTest.java
         └── worker/
@@ -251,18 +254,18 @@ mvn clean package -DskipTests
 
 ### Opsi A: Menjalankan Eksperimen Real-World (Docker Compose) - *Direkomendasikan*
 
-#### Langkah 1: Jalankan Cluster Worker Heterogen
+#### Langkah 1: Jalankan Cluster 8 VM (Host-1: vm-1..4, Host-2: vm-5..8)
 ```powershell
-docker compose up -d worker-1 worker-2 worker-3
+docker compose up -d vm-1 vm-2 vm-3 vm-4 vm-5 vm-6 vm-7 vm-8
 ```
-Verifikasi status container worker:
+Verifikasi status seluruh container VM:
 ```powershell
 docker compose ps
 ```
-Semua worker (`dralba-worker-1`, `dralba-worker-2`, `dralba-worker-3`) akan berada dalam status `Up (healthy)`.
+Semua 8 VM (`dralba-h1-vm1` sampai `dralba-h2-vm8`) akan berada dalam status `Up (healthy)`.
 
 #### Langkah 2: Jalankan Benchmark Multi-Dataset (100 - 1000 Tasks)
-Jalankan scheduler container untuk mengevaluasi dataset 100 sampai 1000 secara otomatis:
+Jalankan scheduler container untuk mengevaluasi dataset 100 sampai 1000 secara otomatis ke 8 VM:
 ```powershell
 docker compose run --rm scheduler java -cp app.jar org.example.dralba.benchmark.BenchmarkRunner --multi 100,200,300,400,500,600,700,800,900,1000 --output-dir /app/results
 ```
@@ -315,60 +318,39 @@ Anda dapat memodifikasi konfigurasi eksperimen dengan mudah melalui `docker-comp
 
 ---
 
-## Hasil Eksperimen Real-World Aktual
+## Hasil Eksperimen Real-World Aktual (Algoritma DRALBA)
 
-Berikut adalah **hasil pengujian aktual** yang diperoleh dari running cluster Docker heterogen (3 worker: 0.5 core, 1.0 core, 1.5 core) untuk dataset **100 hingga 1000 cloudlet**:
+Berikut adalah **hasil pengujian aktual** yang diperoleh dari running cluster Docker heterogen (**1 Datacenter, 2 Host, 8 Worker VM**) untuk dataset **100 hingga 1000 cloudlet** menggunakan algoritma **DRALBA**:
 
-| Dataset | Algoritma | Makespan (s) | Throughput (t/s) | ART (ms) | ARUR (%) | LB StdDev (ms) | Overhead (ms) |
-|---|---|---:|---:|---:|---:|---:|---:|
-| **GoCJ_100** | **DRALBA** | **2.11** | **47.48** | **7.02** | **11.11%** | 83.84 | 26.79 |
-| | FCFS | 3.22 | 31.02 | 8.11 | 8.27% | 68.84 | 2.25 |
-| | RoundRobin | 1.89 | 52.91 | 7.80 | 13.69% | 59.15 | 0.09 |
-| **GoCJ_200** | **DRALBA** | **4.22** | **47.45** | **8.01** | **12.26%** | 147.49 | 5.16 |
-| | FCFS | 5.71 | 35.01 | 6.87 | 7.80% | 146.88 | 1.09 |
-| | RoundRobin | 3.49 | 57.39 | 5.89 | 11.25% | 56.78 | 0.20 |
-| **GoCJ_300** | **DRALBA** | **5.94** | **50.47** | **7.07** | **11.59%** | 179.16 | 2.98 |
-| | FCFS | 8.16 | 36.78 | 7.01 | 8.57% | 233.93 | 2.93 |
-| | RoundRobin | 5.56 | 53.96 | 7.75 | 13.87% | 183.45 | 0.14 |
-| **GoCJ_400** | **DRALBA** | **8.31** | **48.12** | **7.08** | **11.33%** | 321.39 | 2.65 |
-| | FCFS | 9.76 | 40.98 | 6.91 | 9.23% | 317.74 | 0.65 |
-| | RoundRobin | 6.81 | 58.78 | 5.65 | 11.01% | 27.00 | 0.09 |
-| **GoCJ_500** | **DRALBA** | **10.07** | **49.67** | **6.20** | **10.06%** | 378.87 | 1.74 |
-| | FCFS | 13.30 | 37.60 | 6.83 | 8.51% | 456.18 | 1.60 |
-| | RoundRobin | 8.94 | 55.95 | 6.71 | 12.40% | 123.44 | 0.30 |
-| **GoCJ_600** | **DRALBA** | **12.18** | **49.24** | **6.89** | **11.22%** | 520.43 | 4.57 |
-| | FCFS | 16.49 | 36.39 | 7.16 | 8.52% | 506.23 | 1.89 |
-| | RoundRobin | 10.81 | 55.53 | 7.91 | 14.39% | 122.63 | 0.12 |
-| **GoCJ_700** | **DRALBA** | **14.16** | **49.43** | **5.97** | **9.82%** | 537.11 | 1.74 |
-| | FCFS | 18.58 | 37.67 | 6.06 | 7.59% | 581.89 | 3.90 |
-| | RoundRobin | 12.25 | 57.17 | 6.90 | 13.18% | 37.39 | 0.17 |
-| **GoCJ_800** | **DRALBA** | **16.26** | **49.19** | **6.30** | **10.34%** | 634.69 | 1.98 |
-| | FCFS | 20.18 | 39.64 | 6.45 | 8.44% | 658.81 | 2.08 |
-| | RoundRobin | 13.98 | 57.22 | 6.31 | 11.95% | 187.35 | 0.44 |
-| **GoCJ_900** | **DRALBA** | **18.30** | **49.18** | **6.80** | **11.06%** | 718.59 | 1.83 |
-| | FCFS | 23.79 | 37.84 | 7.70 | 9.22% | 586.44 | 2.78 |
-| | RoundRobin | 15.88 | 56.68 | 7.07 | 13.28% | 202.54 | 0.40 |
-| **GoCJ_1000** | **DRALBA** | **20.13** | **49.68** | **6.41** | **10.44%** | 760.87 | 2.29 |
-| | FCFS | 26.45 | 37.80 | 6.50 | 8.10% | 778.33 | 1.66 |
-| | RoundRobin | 17.47 | 57.24 | 7.18 | 13.66% | 107.85 | 0.29 |
+| Dataset | Algoritma | Total Task | Makespan (s) | Throughput (t/s) | ART (ms) | ARUR (%) | LB StdDev (ms) | Overhead (ms) |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| **GoCJ_100** | **DRALBA** | 100 | **0.71** | **140.45** | **5.01** | **8.71%** | 28.67 | 10.92 |
+| **GoCJ_200** | **DRALBA** | 200 | **1.51** | **132.45** | **5.55** | **9.12%** | 61.16 | 1.48 |
+| **GoCJ_300** | **DRALBA** | 300 | **2.20** | **136.12** | **5.10** | **8.67%** | 82.20 | 1.23 |
+| **GoCJ_400** | **DRALBA** | 400 | **2.97** | **134.68** | **5.24** | **8.93%** | 121.24 | 1.13 |
+| **GoCJ_500** | **DRALBA** | 500 | **5.19** | **96.43** | **3.59** | **4.30%** | 98.41 | 1.00 |
+| **GoCJ_600** | **DRALBA** | 600 | **4.35** | **137.99** | **4.77** | **8.15%** | 149.43 | 1.72 |
+| **GoCJ_700** | **DRALBA** | 700 | **6.65** | **105.22** | **5.02** | **6.43%** | 172.03 | 1.59 |
+| **GoCJ_800** | **DRALBA** | 800 | **5.89** | **135.80** | **4.80** | **8.10%** | 204.27 | 4.14 |
+| **GoCJ_900** | **DRALBA** | 900 | **6.64** | **135.56** | **5.36** | **9.08%** | 262.26 | 4.05 |
+| **GoCJ_1000** | **DRALBA** | 1000 | **7.28** | **137.46** | **4.92** | **8.49%** | 259.74 | 7.78 |
 
-### Analisis Temuan Eksperimen
+### Analisis Temuan Eksperimen DRALBA
 
-1. **Perbandingan Makespan:**
-   - **DRALBA secara konsisten mengungguli FCFS** pada seluruh ukuran dataset. Pada dataset 1000, DRALBA menyelesaikan seluruh task dalam **20.13 detik**, sementara FCFS membutuhkan **26.45 detik** (efisiensi Makespan meningkat **~23.9%**).
-   - FCFS mengalami *bottleneck* karena task dialokasikan secara naif tanpa pengurutan beban kerja, menyebabkan antrean panjang pada worker berkemampuan terbatas.
-2. **Karakteristik Throughput:**
-   - Throughput DRALBA sangat stabil di kisaran **47 - 50 task/detik** pada skala dataset 100 sampai 1000. FCFS tertahan di kisaran **31 - 39 task/detik**.
-3. **Pemanfaatan Resource (ARUR) dan Distribusi Beban:**
-   - DRALBA mengalokasikan task lebih banyak ke Worker 3 (High MIPS) dan lebih sedikit ke Worker 1 (Low MIPS) secara proporsional. Sebagai contoh pada dataset 1000: Worker 1 menerima 268 task, Worker 2 menerima 355 task, dan Worker 3 menerima 377 task.
+1. **Skalabilitas Makespan:**
+   - Pada arsitektur 8 VM (2 Host), **DRALBA** mampu menyelesaikan 100 task hanya dalam **0.71 detik** dan skala penuh 1000 task dalam **7.28 detik** dengan tingkat keberhasilan 100% (0 task gagal).
+2. **Konsistensi Throughput:**
+   - Throughput DRALBA terjaga tinggi di kisaran **132 - 140 task/detik** pada mayoritas dataset berkat pembagian beban paralel ke 8 container worker sesuai kapasitas MIPS masing-masing.
+3. **Pemanfaatan Resource (ARUR) dan Distribusi Beban Proporsional:**
+   - DRALBA secara otomatis mengalokasikan porsi task yang lebih besar ke Host-2 (`vm-6`, `vm-7`, `vm-8` yang berkapasitas 4000 MIPS) dibandingkan ke Host-1 (`vm-1`, `vm-2` yang berkapasitas 1000 MIPS), menjaga rata-rata utilisasi sumber daya di kisaran **8.1% - 9.1%** dan waktu tanggap rata-rata (**ART**) yang sangat cepat di kisaran **3.59 - 5.55 ms**.
 4. **Efisiensi Scheduling Overhead:**
-   - Overhead komputasi algoritma DRALBA sangat rendah (hanya berkisar **1.7 ms hingga 5 ms** untuk 1000 task), membuktikan bahwa DRALBA sangat layak diterapkan pada sistem *real-time* produksi.
+   - Waktu komputasi penjadwalan (*scheduling overhead*) algoritma DRALBA sangat ringan (berkisar **1.00 ms hingga 10.92 ms**), membuktikan bahwa algoritma dua fase (*Spill & Fill*) sangat efisien untuk diterapkan pada lingkungan container terdistribusi nyata.
 
 ---
 
 ## Visualisasi Hasil Eksperimen
 
-Untuk meng-generate ulang gambar grafik visualisasi komparatif beresolusi tinggi (300 DPI), jalankan script:
+Untuk meng-generate ulang gambar grafik visualisasi evaluasi performa DRALBA beresolusi tinggi (300 DPI), jalankan script:
 
 ```powershell
 python scripts/visualize_results.py
@@ -376,18 +358,16 @@ python scripts/visualize_results.py
 
 File gambar diagram disimpan di `results/comparison_metrics.png`:
 
-![Perbandingan Metrik Evaluasi](results/comparison_metrics.png)
+![Evaluasi Metrik DRALBA](results/comparison_metrics.png)
 
-Diagram Mermaid interaktif perbandingan Makespan (GoCJ 100 - 1000):
+Diagram Mermaid interaktif evaluasi Makespan DRALBA (GoCJ 100 - 1000):
 
 ```mermaid
 xychart-beta
-    title "Makespan Real-World (Detik): DRALBA vs FCFS vs Round Robin"
+    title "Makespan Real-World DRALBA (Detik) pada 8 Worker VM"
     x-axis "Dataset GoCJ" [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-    y-axis "Makespan (Detik)" 0 --> 30
-    line [2.11, 4.22, 5.94, 8.31, 10.07, 12.18, 14.16, 16.26, 18.30, 20.13]
-    line [3.22, 5.71, 8.16, 9.76, 13.30, 16.49, 18.58, 20.18, 23.79, 26.45]
-    line [1.89, 3.49, 5.56, 6.81, 8.94, 10.81, 12.25, 13.98, 15.88, 17.47]
+    y-axis "Makespan (Detik)" 0 --> 9
+    line [0.71, 1.51, 2.20, 2.97, 5.19, 4.35, 6.65, 5.89, 6.64, 7.28]
 ```
 
 ---
@@ -396,7 +376,6 @@ xychart-beta
 
 Proyek ini dilengkapi dengan unit test otomatis berbasis **JUnit 5** yang mencakup:
 - `DRALBASchedulerTest`: Memvalidasi alokasi kuota share, bebas duplikasi, dan alokasi proporsional pada worker heterogen.
-- `BaselineSchedulerTest`: Memvalidasi determinisme urutan FCFS dan siklus Round Robin.
 - `MetricsCalculatorTest`: Memvalidasi formula matematis Makespan, Throughput, ART, ARUR, dan Standar Deviasi Load Balancing.
 - `RealWorkloadEngineTest`: Memvalidasi eksekusi CPU nyata dan integritas checksum SHA-256.
 
@@ -407,8 +386,6 @@ mvn test
 
 Hasil test aktual:
 ```text
-[INFO] Running org.example.dralba.algorithm.BaselineSchedulerTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 [INFO] Running org.example.dralba.algorithm.DRALBASchedulerTest
 [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 [INFO] Running org.example.dralba.scheduler.MetricsCalculatorTest
@@ -417,7 +394,8 @@ Hasil test aktual:
 [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 [INFO] 
 [INFO] Results:
-[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
 

@@ -1,14 +1,36 @@
+# ==============================================================================
+# Docker Compose: Real-World Cloud Task Scheduling (1 Datacenter, 2 Hosts, 4 VMs per Host)
+#
+# Topologi Infrastruktur:
+# Datacenter-1
+#  ├── Host-1 (Logical Host 1)
+#  │    ├── vm-1 (1000 MIPS, 1 Core, 0.50 CPU limit, 512MB RAM, Port 8081)
+#  │    ├── vm-2 (1000 MIPS, 1 Core, 0.50 CPU limit, 512MB RAM, Port 8082)
+#  │    ├── vm-3 (2000 MIPS, 1 Core, 1.00 CPU limit, 1024MB RAM, Port 8083)
+#  │    └── vm-4 (3000 MIPS, 2 Cores, 1.00 CPU limit, 1024MB RAM, Port 8084)
+#  └── Host-2 (Logical Host 2)
+#       ├── vm-5 (2500 MIPS, 2 Cores, 1.00 CPU limit, 1024MB RAM, Port 8085)
+#       ├── vm-6 (4000 MIPS, 4 Cores, 1.50 CPU limit, 1536MB RAM, Port 8086)
+#       ├── vm-7 (4000 MIPS, 4 Cores, 1.50 CPU limit, 1536MB RAM, Port 8087)
+#       └── vm-8 (4000 MIPS, 4 Cores, 1.50 CPU limit, 1536MB RAM, Port 8088)
+# ==============================================================================
+
 services:
-  worker-1:
+  # ----------------------------------------------------------------------------
+  # HOST-1: 4 VMs (vm-1, vm-2, vm-3, vm-4)
+  # ----------------------------------------------------------------------------
+  vm-1:
     image: dralba-cloud:latest
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: dralba-worker-1
+    container_name: dralba-h1-vm1
     ports:
       - "8081:8080"
     environment:
-      - WORKER_ID=worker-1
+      - WORKER_ID=vm-1
+      - HOST_ID=host-1
+      - DATACENTER_ID=datacenter-1
       - PORT=8080
       - CAPACITY_MIPS=1000
       - CORES=1
@@ -26,16 +48,47 @@ services:
     networks:
       - dralba-net
 
-  worker-2:
+  vm-2:
     image: dralba-cloud:latest
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: dralba-worker-2
+    container_name: dralba-h1-vm2
     ports:
       - "8082:8080"
     environment:
-      - WORKER_ID=worker-2
+      - WORKER_ID=vm-2
+      - HOST_ID=host-1
+      - DATACENTER_ID=datacenter-1
+      - PORT=8080
+      - CAPACITY_MIPS=1000
+      - CORES=1
+      - WORKLOAD_SCALE_FACTOR=10
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health | grep UP || exit 1"]
+      interval: 3s
+      timeout: 2s
+      retries: 5
+    networks:
+      - dralba-net
+
+  vm-3:
+    image: dralba-cloud:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dralba-h1-vm3
+    ports:
+      - "8083:8080"
+    environment:
+      - WORKER_ID=vm-3
+      - HOST_ID=host-1
+      - DATACENTER_ID=datacenter-1
       - PORT=8080
       - CAPACITY_MIPS=2000
       - CORES=1
@@ -53,19 +106,82 @@ services:
     networks:
       - dralba-net
 
-  worker-3:
+  vm-4:
     image: dralba-cloud:latest
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: dralba-worker-3
+    container_name: dralba-h1-vm4
     ports:
-      - "8083:8080"
+      - "8084:8080"
     environment:
-      - WORKER_ID=worker-3
+      - WORKER_ID=vm-4
+      - HOST_ID=host-1
+      - DATACENTER_ID=datacenter-1
       - PORT=8080
       - CAPACITY_MIPS=3000
       - CORES=2
+      - WORKLOAD_SCALE_FACTOR=10
+    deploy:
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 1024M
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health | grep UP || exit 1"]
+      interval: 3s
+      timeout: 2s
+      retries: 5
+    networks:
+      - dralba-net
+
+  # ----------------------------------------------------------------------------
+  # HOST-2: 4 VMs (vm-5, vm-6, vm-7, vm-8)
+  # ----------------------------------------------------------------------------
+  vm-5:
+    image: dralba-cloud:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dralba-h2-vm5
+    ports:
+      - "8085:8080"
+    environment:
+      - WORKER_ID=vm-5
+      - HOST_ID=host-2
+      - DATACENTER_ID=datacenter-1
+      - PORT=8080
+      - CAPACITY_MIPS=2500
+      - CORES=2
+      - WORKLOAD_SCALE_FACTOR=10
+    deploy:
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 1024M
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health | grep UP || exit 1"]
+      interval: 3s
+      timeout: 2s
+      retries: 5
+    networks:
+      - dralba-net
+
+  vm-6:
+    image: dralba-cloud:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dralba-h2-vm6
+    ports:
+      - "8086:8080"
+    environment:
+      - WORKER_ID=vm-6
+      - HOST_ID=host-2
+      - DATACENTER_ID=datacenter-1
+      - PORT=8080
+      - CAPACITY_MIPS=4000
+      - CORES=4
       - WORKLOAD_SCALE_FACTOR=10
     deploy:
       resources:
@@ -80,19 +196,93 @@ services:
     networks:
       - dralba-net
 
+  vm-7:
+    image: dralba-cloud:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dralba-h2-vm7
+    ports:
+      - "8087:8080"
+    environment:
+      - WORKER_ID=vm-7
+      - HOST_ID=host-2
+      - DATACENTER_ID=datacenter-1
+      - PORT=8080
+      - CAPACITY_MIPS=4000
+      - CORES=4
+      - WORKLOAD_SCALE_FACTOR=10
+    deploy:
+      resources:
+        limits:
+          cpus: '1.50'
+          memory: 1536M
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health | grep UP || exit 1"]
+      interval: 3s
+      timeout: 2s
+      retries: 5
+    networks:
+      - dralba-net
+
+  vm-8:
+    image: dralba-cloud:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dralba-h2-vm8
+    ports:
+      - "8088:8080"
+    environment:
+      - WORKER_ID=vm-8
+      - HOST_ID=host-2
+      - DATACENTER_ID=datacenter-1
+      - PORT=8080
+      - CAPACITY_MIPS=4000
+      - CORES=4
+      - WORKLOAD_SCALE_FACTOR=10
+    deploy:
+      resources:
+        limits:
+          cpus: '1.50'
+          memory: 1536M
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health | grep UP || exit 1"]
+      interval: 3s
+      timeout: 2s
+      retries: 5
+    networks:
+      - dralba-net
+
+  # ----------------------------------------------------------------------------
+  # SCHEDULER: Mengorkestrasi Penjadwalan DRALBA, FCFS, & Round Robin
+  # ----------------------------------------------------------------------------
   scheduler:
     image: dralba-cloud:latest
     container_name: dralba-scheduler
     depends_on:
-      worker-1:
+      vm-1:
         condition: service_healthy
-      worker-2:
+      vm-2:
         condition: service_healthy
-      worker-3:
+      vm-3:
+        condition: service_healthy
+      vm-4:
+        condition: service_healthy
+      vm-5:
+        condition: service_healthy
+      vm-6:
+        condition: service_healthy
+      vm-7:
+        condition: service_healthy
+      vm-8:
         condition: service_healthy
     environment:
-      - WORKER_URLS=http://worker-1:8080,http://worker-2:8080,http://worker-3:8080
-      - WORKER_CAPACITIES=1000,2000,3000
+      - DATACENTER_ID=datacenter-1
+      - WORKER_URLS=http://vm-1:8080,http://vm-2:8080,http://vm-3:8080,http://vm-4:8080,http://vm-5:8080,http://vm-6:8080,http://vm-7:8080,http://vm-8:8080
+      - WORKER_CAPACITIES=1000,1000,2000,3000,2500,4000,4000,4000
+      - WORKER_CORES=1,1,1,2,2,4,4,4
+      - WORKER_HOSTS=host-1,host-1,host-1,host-1,host-2,host-2,host-2,host-2
     volumes:
       - ./results:/app/results
     entrypoint: [

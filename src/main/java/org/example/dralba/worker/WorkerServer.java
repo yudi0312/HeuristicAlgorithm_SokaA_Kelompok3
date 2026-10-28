@@ -27,6 +27,8 @@ import java.util.concurrent.atomic.DoubleAdder;
 public class WorkerServer {
 
     private final String workerId;
+    private final String hostId;
+    private final String datacenterId;
     private final int port;
     private final double capacityMips;
     private final int cores;
@@ -40,7 +42,13 @@ public class WorkerServer {
     private HttpServer server;
 
     public WorkerServer(String workerId, int port, double capacityMips, int cores, int scaleFactor) {
+        this(workerId, port, capacityMips, cores, scaleFactor, "host-1", "datacenter-1");
+    }
+
+    public WorkerServer(String workerId, int port, double capacityMips, int cores, int scaleFactor, String hostId, String datacenterId) {
         this.workerId = workerId;
+        this.hostId = (hostId != null && !hostId.isBlank()) ? hostId : "host-1";
+        this.datacenterId = (datacenterId != null && !datacenterId.isBlank()) ? datacenterId : "datacenter-1";
         this.port = port;
         this.capacityMips = capacityMips;
         this.cores = cores;
@@ -58,8 +66,8 @@ public class WorkerServer {
         server.createContext("/reset", new ResetHandler());
 
         server.start();
-        System.out.printf("[%s] Worker aktif di port %d (MIPS: %.0f, Cores: %d, Scale: %d)%n",
-                workerId, port, capacityMips, cores, workloadEngine.getScaleFactor());
+        System.out.printf("[%s | %s | %s] Worker aktif di port %d (MIPS: %.0f, Cores: %d, Scale: %d)%n",
+                datacenterId, hostId, workerId, port, capacityMips, cores, workloadEngine.getScaleFactor());
     }
 
     public void stop() {
@@ -79,6 +87,8 @@ public class WorkerServer {
             Map<String, Object> resp = new HashMap<>();
             resp.put("status", "UP");
             resp.put("workerId", workerId);
+            resp.put("hostId", hostId);
+            resp.put("datacenterId", datacenterId);
             resp.put("capacityMips", capacityMips);
             resp.put("cores", cores);
             resp.put("scaleFactor", workloadEngine.getScaleFactor());
@@ -160,13 +170,15 @@ public class WorkerServer {
     }
 
     public static void main(String[] args) throws Exception {
-        String workerId = getEnvOrDefault("WORKER_ID", "worker-1");
+        String workerId = getEnvOrDefault("WORKER_ID", "vm-1");
+        String hostId = getEnvOrDefault("HOST_ID", "host-1");
+        String datacenterId = getEnvOrDefault("DATACENTER_ID", "datacenter-1");
         int port = Integer.parseInt(getEnvOrDefault("PORT", "8080"));
         double capacityMips = Double.parseDouble(getEnvOrDefault("CAPACITY_MIPS", "1000.0"));
         int cores = Integer.parseInt(getEnvOrDefault("CORES", "1"));
         int scaleFactor = Integer.parseInt(getEnvOrDefault("WORKLOAD_SCALE_FACTOR", "10"));
 
-        WorkerServer server = new WorkerServer(workerId, port, capacityMips, cores, scaleFactor);
+        WorkerServer server = new WorkerServer(workerId, port, capacityMips, cores, scaleFactor, hostId, datacenterId);
         server.start();
 
         Runtime.getRuntime().addShutdownHook(new Thread(server::stop));
