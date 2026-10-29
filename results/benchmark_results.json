@@ -5,61 +5,61 @@
     "totalTasks": 100,
     "successfulTasks": 100,
     "failedTasks": 0,
-    "makespanSeconds": 0.712,
-    "throughputTasksPerSec": 140.4494382022472,
-    "averageResponseTimeMs": 5.01,
-    "averageWaitingTimeMs": 0.01,
-    "averageResourceUtilizationPercent": 8.714637780898876,
-    "loadBalancingStdDevMs": 28.67101623186711,
-    "schedulingOverheadMs": 10.920472,
+    "makespanSeconds": 0.685,
+    "throughputTasksPerSec": 145.985401459854,
+    "averageResponseTimeMs": 3.89,
+    "averageWaitingTimeMs": 0.02,
+    "averageResourceUtilizationPercent": 7.0400555656934305,
+    "loadBalancingStdDevMs": 21.973879976028954,
+    "schedulingOverheadMs": 11.358301,
     "workerDetails": {
       "vm-1": {
         "workerId": "vm-1",
         "tasksExecuted": 9,
-        "totalBusyTimeMs": 25.687408,
-        "utilizationPercent": 3.60778202247191
+        "totalBusyTimeMs": 16.850945000000003,
+        "utilizationPercent": 2.4599919708029203
       },
       "vm-2": {
         "workerId": "vm-2",
         "tasksExecuted": 10,
-        "totalBusyTimeMs": 25.129241,
-        "utilizationPercent": 3.5293877808988765
+        "totalBusyTimeMs": 20.497033000000002,
+        "utilizationPercent": 2.9922675912408763
       },
       "vm-3": {
         "workerId": "vm-3",
         "tasksExecuted": 12,
-        "totalBusyTimeMs": 42.960651000000006,
-        "utilizationPercent": 6.03379929775281
+        "totalBusyTimeMs": 33.519153,
+        "utilizationPercent": 4.893307007299271
       },
       "vm-4": {
         "workerId": "vm-4",
         "tasksExecuted": 14,
-        "totalBusyTimeMs": 60.501319,
-        "utilizationPercent": 8.497376264044943
+        "totalBusyTimeMs": 53.923761999999996,
+        "utilizationPercent": 7.872082043795619
       },
       "vm-5": {
         "workerId": "vm-5",
         "tasksExecuted": 13,
-        "totalBusyTimeMs": 55.35845200000001,
-        "utilizationPercent": 7.775063483146067
+        "totalBusyTimeMs": 44.342237,
+        "utilizationPercent": 6.4733192700729925
       },
       "vm-6": {
         "workerId": "vm-6",
         "tasksExecuted": 14,
-        "totalBusyTimeMs": 88.66764999999998,
-        "utilizationPercent": 12.45332162921348
+        "totalBusyTimeMs": 63.56421999999999,
+        "utilizationPercent": 9.27944817518248
       },
       "vm-7": {
         "workerId": "vm-7",
         "tasksExecuted": 14,
-        "totalBusyTimeMs": 94.907641,
-        "utilizationPercent": 13.329724859550563
+        "totalBusyTimeMs": 74.809061,
+        "utilizationPercent": 10.921030802919708
       },
       "vm-8": {
         "workerId": "vm-8",
         "tasksExecuted": 14,
-        "totalBusyTimeMs": 103.173406,
-        "utilizationPercent": 14.490646910112359
+        "totalBusyTimeMs": 78.288634,
+        "utilizationPercent": 11.428997664233577
       }
     }
   },
@@ -69,61 +69,61 @@
     "totalTasks": 200,
     "successfulTasks": 200,
     "failedTasks": 0,
-    "makespanSeconds": 1.51,
-    "throughputTasksPerSec": 132.4503311258278,
-    "averageResponseTimeMs": 5.55,
+    "makespanSeconds": 1.494,
+    "throughputTasksPerSec": 133.86880856760374,
+    "averageResponseTimeMs": 5.11,
     "averageWaitingTimeMs": 0.01,
-    "averageResourceUtilizationPercent": 9.12496367549669,
-    "loadBalancingStdDevMs": 61.162578917207654,
-    "schedulingOverheadMs": 1.475733,
+    "averageResourceUtilizationPercent": 8.504976480923695,
+    "loadBalancingStdDevMs": 48.58956517762589,
+    "schedulingOverheadMs": 5.133987,
     "workerDetails": {
       "vm-1": {
         "workerId": "vm-1",
         "tasksExecuted": 18,
-        "totalBusyTimeMs": 51.410509,
-        "utilizationPercent": 3.4046694701986757
+        "totalBusyTimeMs": 62.48280799999999,
+        "utilizationPercent": 4.18224953145917
       },
       "vm-2": {
         "workerId": "vm-2",
         "tasksExecuted": 18,
-        "totalBusyTimeMs": 52.473029,
-        "utilizationPercent": 3.4750350331125825
+        "totalBusyTimeMs": 62.510484999999996,
+        "utilizationPercent": 4.184102074966532
       },
       "vm-3": {
         "workerId": "vm-3",
         "tasksExecuted": 26,
-        "totalBusyTimeMs": 95.08390700000001,
-        "utilizationPercent": 6.2969474834437085
+        "totalBusyTimeMs": 103.72711800000002,
+        "utilizationPercent": 6.942912851405623
       },
       "vm-4": {
         "workerId": "vm-4",
         "tasksExecuted": 27,
-        "totalBusyTimeMs": 150.197018,
-        "utilizationPercent": 9.94682238410596
+        "totalBusyTimeMs": 129.67620599999998,
+        "utilizationPercent": 8.679799598393572
       },
       "vm-5": {
         "workerId": "vm-5",
         "tasksExecuted": 27,
-        "totalBusyTimeMs": 141.33926499999998,
-        "utilizationPercent": 9.360216225165562
+        "totalBusyTimeMs": 109.64996499999998,
+        "utilizationPercent": 7.339355087014725
       },
       "vm-6": {
         "workerId": "vm-6",
         "tasksExecuted": 29,
-        "totalBusyTimeMs": 208.52886599999997,
-        "utilizationPercent": 13.809858675496686
+        "totalBusyTimeMs": 180.80925000000002,
+        "utilizationPercent": 12.102359437751005
       },
       "vm-7": {
         "workerId": "vm-7",
         "tasksExecuted": 27,
-        "totalBusyTimeMs": 197.12146000000004,
-        "utilizationPercent": 13.054401324503315
+        "totalBusyTimeMs": 170.37944500000003,
+        "utilizationPercent": 11.404246653279788
       },
       "vm-8": {
         "workerId": "vm-8",
         "tasksExecuted": 28,
-        "totalBusyTimeMs": 206.14155800000003,
-        "utilizationPercent": 13.651758807947022
+        "totalBusyTimeMs": 197.27951200000004,
+        "utilizationPercent": 13.204786613119147
       }
     }
   },
@@ -133,61 +133,61 @@
     "totalTasks": 300,
     "successfulTasks": 300,
     "failedTasks": 0,
-    "makespanSeconds": 2.204,
-    "throughputTasksPerSec": 136.11615245009074,
-    "averageResponseTimeMs": 5.1,
-    "averageWaitingTimeMs": 0.0033333333333333335,
-    "averageResourceUtilizationPercent": 8.671326225045373,
-    "loadBalancingStdDevMs": 82.1975728670934,
-    "schedulingOverheadMs": 1.228578,
+    "makespanSeconds": 2.261,
+    "throughputTasksPerSec": 132.68465280849182,
+    "averageResponseTimeMs": 6.123333333333333,
+    "averageWaitingTimeMs": 0.01,
+    "averageResourceUtilizationPercent": 10.14478422158337,
+    "loadBalancingStdDevMs": 108.6261393334024,
+    "schedulingOverheadMs": 1.988377,
     "workerDetails": {
       "vm-1": {
         "workerId": "vm-1",
         "tasksExecuted": 27,
-        "totalBusyTimeMs": 85.166483,
-        "utilizationPercent": 3.864177994555354
+        "totalBusyTimeMs": 77.360516,
+        "utilizationPercent": 3.4215177355152586
       },
       "vm-2": {
         "workerId": "vm-2",
         "tasksExecuted": 27,
-        "totalBusyTimeMs": 84.049347,
-        "utilizationPercent": 3.813491243194192
+        "totalBusyTimeMs": 76.759517,
+        "utilizationPercent": 3.394936620964175
       },
       "vm-3": {
         "workerId": "vm-3",
         "tasksExecuted": 37,
-        "totalBusyTimeMs": 136.510269,
-        "utilizationPercent": 6.193750862068965
+        "totalBusyTimeMs": 159.765839,
+        "utilizationPercent": 7.0661582927908
       },
       "vm-4": {
         "workerId": "vm-4",
         "tasksExecuted": 40,
-        "totalBusyTimeMs": 182.817295,
-        "utilizationPercent": 8.29479559891107
+        "totalBusyTimeMs": 260.32981599999994,
+        "utilizationPercent": 11.51392375055285
       },
       "vm-5": {
         "workerId": "vm-5",
         "tasksExecuted": 40,
-        "totalBusyTimeMs": 176.921162,
-        "utilizationPercent": 8.027275952813067
+        "totalBusyTimeMs": 217.47217099999995,
+        "utilizationPercent": 9.618406501547986
       },
       "vm-6": {
         "workerId": "vm-6",
         "tasksExecuted": 43,
-        "totalBusyTimeMs": 293.80181100000004,
-        "utilizationPercent": 13.330390698729586
+        "totalBusyTimeMs": 348.893911,
+        "utilizationPercent": 15.430955816010613
       },
       "vm-7": {
         "workerId": "vm-7",
         "tasksExecuted": 43,
-        "totalBusyTimeMs": 283.97731800000014,
-        "utilizationPercent": 12.884633303085305
+        "totalBusyTimeMs": 347.38933599999996,
+        "utilizationPercent": 15.364411145510834
       },
       "vm-8": {
         "workerId": "vm-8",
         "tasksExecuted": 43,
-        "totalBusyTimeMs": 285.684555,
-        "utilizationPercent": 12.962094147005443
+        "totalBusyTimeMs": 347.01746399999985,
+        "utilizationPercent": 15.347963909774428
       }
     }
   },
@@ -197,61 +197,61 @@
     "totalTasks": 400,
     "successfulTasks": 400,
     "failedTasks": 0,
-    "makespanSeconds": 2.97,
-    "throughputTasksPerSec": 134.68013468013467,
-    "averageResponseTimeMs": 5.2425,
-    "averageWaitingTimeMs": 0.01,
-    "averageResourceUtilizationPercent": 8.934332643097646,
-    "loadBalancingStdDevMs": 121.2364069659439,
-    "schedulingOverheadMs": 1.13017,
+    "makespanSeconds": 3.916,
+    "throughputTasksPerSec": 102.14504596527068,
+    "averageResponseTimeMs": 6.3325,
+    "averageWaitingTimeMs": 0.005,
+    "averageResourceUtilizationPercent": 8.147961765832482,
+    "loadBalancingStdDevMs": 142.93042520740303,
+    "schedulingOverheadMs": 2.295549,
     "workerDetails": {
       "vm-1": {
         "workerId": "vm-1",
         "tasksExecuted": 33,
-        "totalBusyTimeMs": 90.93950500000004,
-        "utilizationPercent": 3.0619361952861968
+        "totalBusyTimeMs": 117.818467,
+        "utilizationPercent": 3.0086431818181816
       },
       "vm-2": {
         "workerId": "vm-2",
         "tasksExecuted": 33,
-        "totalBusyTimeMs": 98.57300700000002,
-        "utilizationPercent": 3.318956464646465
+        "totalBusyTimeMs": 115.195703,
+        "utilizationPercent": 2.9416675944841675
       },
       "vm-3": {
         "workerId": "vm-3",
         "tasksExecuted": 51,
-        "totalBusyTimeMs": 202.09571200000005,
-        "utilizationPercent": 6.804569427609429
+        "totalBusyTimeMs": 233.50562599999998,
+        "utilizationPercent": 5.962860725229826
       },
       "vm-4": {
         "workerId": "vm-4",
         "tasksExecuted": 55,
-        "totalBusyTimeMs": 315.199137,
-        "utilizationPercent": 10.612765555555557
+        "totalBusyTimeMs": 358.5027560000001,
+        "utilizationPercent": 9.154820122574057
       },
       "vm-5": {
         "workerId": "vm-5",
         "tasksExecuted": 54,
-        "totalBusyTimeMs": 227.51454099999998,
-        "utilizationPercent": 7.660422255892255
+        "totalBusyTimeMs": 304.9489079999999,
+        "utilizationPercent": 7.787255056179773
       },
       "vm-6": {
         "workerId": "vm-6",
         "tasksExecuted": 58,
-        "totalBusyTimeMs": 402.12158000000005,
-        "utilizationPercent": 13.539447138047139
+        "totalBusyTimeMs": 466.792954,
+        "utilizationPercent": 11.92014693564862
       },
       "vm-7": {
         "workerId": "vm-7",
         "tasksExecuted": 58,
-        "totalBusyTimeMs": 398.1289600000001,
-        "utilizationPercent": 13.405015488215492
+        "totalBusyTimeMs": 476.318138,
+        "utilizationPercent": 12.163384525025537
       },
       "vm-8": {
         "workerId": "vm-8",
         "tasksExecuted": 58,
-        "totalBusyTimeMs": 388.2249939999999,
-        "utilizationPercent": 13.071548619528617
+        "totalBusyTimeMs": 479.51090999999985,
+        "utilizationPercent": 12.24491598569969
       }
     }
   },
@@ -261,61 +261,61 @@
     "totalTasks": 500,
     "successfulTasks": 500,
     "failedTasks": 0,
-    "makespanSeconds": 5.185,
-    "throughputTasksPerSec": 96.43201542912247,
-    "averageResponseTimeMs": 3.59,
-    "averageWaitingTimeMs": 0.014,
-    "averageResourceUtilizationPercent": 4.303151721311474,
-    "loadBalancingStdDevMs": 98.40601581718855,
-    "schedulingOverheadMs": 1.002786,
+    "makespanSeconds": 3.772,
+    "throughputTasksPerSec": 132.5556733828208,
+    "averageResponseTimeMs": 5.328,
+    "averageWaitingTimeMs": 0.002,
+    "averageResourceUtilizationPercent": 8.772838315217392,
+    "loadBalancingStdDevMs": 142.08202174361344,
+    "schedulingOverheadMs": 4.604352,
     "workerDetails": {
       "vm-1": {
         "workerId": "vm-1",
         "tasksExecuted": 42,
-        "totalBusyTimeMs": 78.990938,
-        "utilizationPercent": 1.5234510703953712
+        "totalBusyTimeMs": 128.941498,
+        "utilizationPercent": 3.418385418875928
       },
       "vm-2": {
         "workerId": "vm-2",
         "tasksExecuted": 42,
-        "totalBusyTimeMs": 82.197353,
-        "utilizationPercent": 1.5852912825458052
+        "totalBusyTimeMs": 129.15959499999997,
+        "utilizationPercent": 3.4241674178154815
       },
       "vm-3": {
         "workerId": "vm-3",
         "tasksExecuted": 64,
-        "totalBusyTimeMs": 179.55352099999996,
-        "utilizationPercent": 3.4629415814850524
+        "totalBusyTimeMs": 256.27780900000005,
+        "utilizationPercent": 6.794215509013787
       },
       "vm-4": {
         "workerId": "vm-4",
         "tasksExecuted": 69,
-        "totalBusyTimeMs": 244.58646099999996,
-        "utilizationPercent": 4.7171930761812915
+        "totalBusyTimeMs": 374.78311800000006,
+        "utilizationPercent": 9.935925715800638
       },
       "vm-5": {
         "workerId": "vm-5",
         "tasksExecuted": 67,
-        "totalBusyTimeMs": 209.63810599999994,
-        "utilizationPercent": 4.043165014464801
+        "totalBusyTimeMs": 301.7744989999999,
+        "utilizationPercent": 8.000384384941672
       },
       "vm-6": {
         "workerId": "vm-6",
         "tasksExecuted": 73,
-        "totalBusyTimeMs": 326.132182,
-        "utilizationPercent": 6.289916721311475
+        "totalBusyTimeMs": 486.3688940000001,
+        "utilizationPercent": 12.894191251325559
       },
       "vm-7": {
         "workerId": "vm-7",
         "tasksExecuted": 72,
-        "totalBusyTimeMs": 329.8428639999999,
-        "utilizationPercent": 6.361482430086787
+        "totalBusyTimeMs": 487.1747459999998,
+        "utilizationPercent": 12.915555302226931
       },
       "vm-8": {
         "workerId": "vm-8",
         "tasksExecuted": 71,
-        "totalBusyTimeMs": 334.005909,
-        "utilizationPercent": 6.441772594021214
+        "totalBusyTimeMs": 482.81153099999995,
+        "utilizationPercent": 12.79988152173913
       }
     }
   },
@@ -325,61 +325,61 @@
     "totalTasks": 600,
     "successfulTasks": 600,
     "failedTasks": 0,
-    "makespanSeconds": 4.348,
-    "throughputTasksPerSec": 137.99448022079116,
-    "averageResponseTimeMs": 4.7716666666666665,
-    "averageWaitingTimeMs": 0.005,
-    "averageResourceUtilizationPercent": 8.151034515869366,
-    "loadBalancingStdDevMs": 149.43088248082572,
-    "schedulingOverheadMs": 1.721827,
+    "makespanSeconds": 4.527,
+    "throughputTasksPerSec": 132.5381047051027,
+    "averageResponseTimeMs": 5.935,
+    "averageWaitingTimeMs": 0.0,
+    "averageResourceUtilizationPercent": 9.843337461343053,
+    "loadBalancingStdDevMs": 203.6372775334071,
+    "schedulingOverheadMs": 1.268384,
     "workerDetails": {
       "vm-1": {
         "workerId": "vm-1",
         "tasksExecuted": 53,
-        "totalBusyTimeMs": 133.14953599999996,
-        "utilizationPercent": 3.062316835326586
+        "totalBusyTimeMs": 171.994332,
+        "utilizationPercent": 3.799300463883367
       },
       "vm-2": {
         "workerId": "vm-2",
         "tasksExecuted": 52,
-        "totalBusyTimeMs": 140.90875000000005,
-        "utilizationPercent": 3.240771619135236
+        "totalBusyTimeMs": 162.32683999999998,
+        "utilizationPercent": 3.5857486193947423
       },
       "vm-3": {
         "workerId": "vm-3",
         "tasksExecuted": 76,
-        "totalBusyTimeMs": 280.93977299999995,
-        "utilizationPercent": 6.461356324747008
+        "totalBusyTimeMs": 321.39169599999997,
+        "utilizationPercent": 7.09944104263309
       },
       "vm-4": {
         "workerId": "vm-4",
         "tasksExecuted": 82,
-        "totalBusyTimeMs": 435.7896320000002,
-        "utilizationPercent": 10.022760625574982
+        "totalBusyTimeMs": 486.42349400000006,
+        "utilizationPercent": 10.744941329798985
       },
       "vm-5": {
         "workerId": "vm-5",
         "tasksExecuted": 80,
-        "totalBusyTimeMs": 320.5115689999999,
-        "utilizationPercent": 7.371471228150872
+        "totalBusyTimeMs": 399.3828659999999,
+        "utilizationPercent": 8.822241351888668
       },
       "vm-6": {
         "workerId": "vm-6",
         "tasksExecuted": 85,
-        "totalBusyTimeMs": 502.22550999999993,
-        "utilizationPercent": 11.550724701011958
+        "totalBusyTimeMs": 664.360675,
+        "utilizationPercent": 14.675517450850453
       },
       "vm-7": {
         "workerId": "vm-7",
         "tasksExecuted": 86,
-        "totalBusyTimeMs": 518.6762480000002,
-        "utilizationPercent": 11.929076540938368
+        "totalBusyTimeMs": 670.997246,
+        "utilizationPercent": 14.822117207863927
       },
       "vm-8": {
         "workerId": "vm-8",
         "tasksExecuted": 86,
-        "totalBusyTimeMs": 503.0548279999999,
-        "utilizationPercent": 11.569798252069914
+        "totalBusyTimeMs": 687.9859459999999,
+        "utilizationPercent": 15.197392224431189
       }
     }
   },
@@ -389,61 +389,61 @@
     "totalTasks": 700,
     "successfulTasks": 700,
     "failedTasks": 0,
-    "makespanSeconds": 6.653,
-    "throughputTasksPerSec": 105.21569216894635,
-    "averageResponseTimeMs": 5.017142857142857,
-    "averageWaitingTimeMs": 0.01,
-    "averageResourceUtilizationPercent": 6.430690842477079,
-    "loadBalancingStdDevMs": 172.03243284758884,
-    "schedulingOverheadMs": 1.593249,
+    "makespanSeconds": 5.298,
+    "throughputTasksPerSec": 132.12533031332578,
+    "averageResponseTimeMs": 5.62,
+    "averageWaitingTimeMs": 0.005714285714285714,
+    "averageResourceUtilizationPercent": 9.23883114618724,
+    "loadBalancingStdDevMs": 220.04427870663892,
+    "schedulingOverheadMs": 5.025913,
     "workerDetails": {
       "vm-1": {
         "workerId": "vm-1",
         "tasksExecuted": 57,
-        "totalBusyTimeMs": 216.05826700000006,
-        "utilizationPercent": 3.2475314444611465
+        "totalBusyTimeMs": 184.97789299999997,
+        "utilizationPercent": 3.491466459041147
       },
       "vm-2": {
         "workerId": "vm-2",
         "tasksExecuted": 56,
-        "totalBusyTimeMs": 155.045519,
-        "utilizationPercent": 2.33046022846836
+        "totalBusyTimeMs": 174.08899500000004,
+        "utilizationPercent": 3.2859379954699897
       },
       "vm-3": {
         "workerId": "vm-3",
         "tasksExecuted": 90,
-        "totalBusyTimeMs": 327.4754489999998,
-        "utilizationPercent": 4.922222290695923
+        "totalBusyTimeMs": 355.68161000000003,
+        "utilizationPercent": 6.713507172517932
       },
       "vm-4": {
         "workerId": "vm-4",
         "tasksExecuted": 96,
-        "totalBusyTimeMs": 476.37510100000014,
-        "utilizationPercent": 7.160305140538105
+        "totalBusyTimeMs": 549.8288119999999,
+        "utilizationPercent": 10.378044771611926
       },
       "vm-5": {
         "workerId": "vm-5",
         "tasksExecuted": 95,
-        "totalBusyTimeMs": 404.51332100000013,
-        "utilizationPercent": 6.080164151510599
+        "totalBusyTimeMs": 464.5418499999998,
+        "utilizationPercent": 8.768249339373344
       },
       "vm-6": {
         "workerId": "vm-6",
         "tasksExecuted": 102,
-        "totalBusyTimeMs": 610.231894,
-        "utilizationPercent": 9.17228158725387
+        "totalBusyTimeMs": 703.2803759999999,
+        "utilizationPercent": 13.274450283125708
       },
       "vm-7": {
         "workerId": "vm-7",
         "tasksExecuted": 102,
-        "totalBusyTimeMs": 610.2040399999998,
-        "utilizationPercent": 9.171862918983916
+        "totalBusyTimeMs": 736.0705459999996,
+        "utilizationPercent": 13.893366289165716
       },
       "vm-8": {
         "workerId": "vm-8",
         "tasksExecuted": 102,
-        "totalBusyTimeMs": 622.7673030000002,
-        "utilizationPercent": 9.360698977904708
+        "totalBusyTimeMs": 747.3161110000002,
+        "utilizationPercent": 14.105626859192153
       }
     }
   },
@@ -453,61 +453,61 @@
     "totalTasks": 800,
     "successfulTasks": 800,
     "failedTasks": 0,
-    "makespanSeconds": 5.891,
-    "throughputTasksPerSec": 135.80037345102699,
-    "averageResponseTimeMs": 4.8,
-    "averageWaitingTimeMs": 0.00375,
-    "averageResourceUtilizationPercent": 8.095567878967918,
-    "loadBalancingStdDevMs": 204.27487115881937,
-    "schedulingOverheadMs": 4.143163,
+    "makespanSeconds": 5.838,
+    "throughputTasksPerSec": 137.03323055841042,
+    "averageResponseTimeMs": 4.47375,
+    "averageWaitingTimeMs": 0.01,
+    "averageResourceUtilizationPercent": 7.706737844724221,
+    "loadBalancingStdDevMs": 188.11476073990045,
+    "schedulingOverheadMs": 1.278583,
     "workerDetails": {
       "vm-1": {
         "workerId": "vm-1",
         "tasksExecuted": 65,
-        "totalBusyTimeMs": 188.15537399999994,
-        "utilizationPercent": 3.1939462570022057
+        "totalBusyTimeMs": 171.03685199999993,
+        "utilizationPercent": 2.9297165467625885
       },
       "vm-2": {
         "workerId": "vm-2",
         "tasksExecuted": 66,
-        "totalBusyTimeMs": 192.076206,
-        "utilizationPercent": 3.2605025632320492
+        "totalBusyTimeMs": 169.54317099999997,
+        "utilizationPercent": 2.9041310551558746
       },
       "vm-3": {
         "workerId": "vm-3",
         "tasksExecuted": 103,
-        "totalBusyTimeMs": 378.5126520000001,
-        "utilizationPercent": 6.425269937192329
+        "totalBusyTimeMs": 375.233063,
+        "utilizationPercent": 6.427424854402193
       },
       "vm-4": {
         "workerId": "vm-4",
         "tasksExecuted": 110,
-        "totalBusyTimeMs": 525.8570950000001,
-        "utilizationPercent": 8.926448735359022
+        "totalBusyTimeMs": 498.7213790000002,
+        "utilizationPercent": 8.542675214114425
       },
       "vm-5": {
         "workerId": "vm-5",
         "tasksExecuted": 107,
-        "totalBusyTimeMs": 420.82324500000016,
-        "utilizationPercent": 7.143494228484131
+        "totalBusyTimeMs": 439.0302119999999,
+        "utilizationPercent": 7.520216032887974
       },
       "vm-6": {
         "workerId": "vm-6",
         "tasksExecuted": 116,
-        "totalBusyTimeMs": 688.2762179999999,
-        "utilizationPercent": 11.683520930232556
+        "totalBusyTimeMs": 653.0458819999999,
+        "utilizationPercent": 11.186123364165807
       },
       "vm-7": {
         "workerId": "vm-7",
         "tasksExecuted": 117,
-        "totalBusyTimeMs": 707.787374,
-        "utilizationPercent": 12.014723714140214
+        "totalBusyTimeMs": 655.9902610000001,
+        "utilizationPercent": 11.236558084960606
       },
       "vm-8": {
         "workerId": "vm-8",
         "tasksExecuted": 116,
-        "totalBusyTimeMs": 713.7910660000001,
-        "utilizationPercent": 12.116636666100835
+        "totalBusyTimeMs": 636.7540229999998,
+        "utilizationPercent": 10.907057605344294
       }
     }
   },
@@ -517,61 +517,61 @@
     "totalTasks": 900,
     "successfulTasks": 900,
     "failedTasks": 0,
-    "makespanSeconds": 6.639,
-    "throughputTasksPerSec": 135.56258472661546,
-    "averageResponseTimeMs": 5.3566666666666665,
-    "averageWaitingTimeMs": 0.006666666666666667,
-    "averageResourceUtilizationPercent": 9.083937162976351,
-    "loadBalancingStdDevMs": 262.2589373614503,
-    "schedulingOverheadMs": 4.048672,
+    "makespanSeconds": 6.747,
+    "throughputTasksPerSec": 133.3926189417519,
+    "averageResponseTimeMs": 5.623333333333333,
+    "averageWaitingTimeMs": 0.0044444444444444444,
+    "averageResourceUtilizationPercent": 9.352586305024452,
+    "loadBalancingStdDevMs": 256.85076357432143,
+    "schedulingOverheadMs": 4.128062,
     "workerDetails": {
       "vm-1": {
         "workerId": "vm-1",
         "tasksExecuted": 76,
-        "totalBusyTimeMs": 242.048366,
-        "utilizationPercent": 3.6458557915348697
+        "totalBusyTimeMs": 251.14982800000004,
+        "utilizationPercent": 3.7223925892989485
       },
       "vm-2": {
         "workerId": "vm-2",
         "tasksExecuted": 75,
-        "totalBusyTimeMs": 239.02195199999994,
-        "utilizationPercent": 3.600270402169001
+        "totalBusyTimeMs": 250.00304899999998,
+        "utilizationPercent": 3.7053957166147913
       },
       "vm-3": {
         "workerId": "vm-3",
         "tasksExecuted": 114,
-        "totalBusyTimeMs": 443.5491159999999,
-        "utilizationPercent": 6.6809627353517085
+        "totalBusyTimeMs": 525.840905,
+        "utilizationPercent": 7.793699496072329
       },
       "vm-4": {
         "workerId": "vm-4",
         "tasksExecuted": 125,
-        "totalBusyTimeMs": 697.3815639999997,
-        "utilizationPercent": 10.504316372947727
+        "totalBusyTimeMs": 704.940701,
+        "utilizationPercent": 10.448209589447162
       },
       "vm-5": {
         "workerId": "vm-5",
         "tasksExecuted": 120,
-        "totalBusyTimeMs": 532.484413,
-        "utilizationPercent": 8.020551483657178
+        "totalBusyTimeMs": 615.8555609999997,
+        "utilizationPercent": 9.127842907959089
       },
       "vm-6": {
         "workerId": "vm-6",
         "tasksExecuted": 130,
-        "totalBusyTimeMs": 864.8387009999998,
-        "utilizationPercent": 13.02664107546317
+        "totalBusyTimeMs": 862.4578239999998,
+        "utilizationPercent": 12.782834207796054
       },
       "vm-7": {
         "workerId": "vm-7",
         "tasksExecuted": 130,
-        "totalBusyTimeMs": 904.3055239999998,
-        "utilizationPercent": 13.621110468444039
+        "totalBusyTimeMs": 885.9886329999998,
+        "utilizationPercent": 13.131593789832516
       },
       "vm-8": {
         "workerId": "vm-8",
         "tasksExecuted": 130,
-        "totalBusyTimeMs": 901.0310700000002,
-        "utilizationPercent": 13.571788974243113
+        "totalBusyTimeMs": 951.9154829999997,
+        "utilizationPercent": 14.10872214317474
       }
     }
   },
@@ -581,61 +581,61 @@
     "totalTasks": 1000,
     "successfulTasks": 1000,
     "failedTasks": 0,
-    "makespanSeconds": 7.275,
-    "throughputTasksPerSec": 137.4570446735395,
-    "averageResponseTimeMs": 4.919,
-    "averageWaitingTimeMs": 0.007,
-    "averageResourceUtilizationPercent": 8.494089869415808,
-    "loadBalancingStdDevMs": 259.74053676580206,
-    "schedulingOverheadMs": 7.783435,
+    "makespanSeconds": 8.225,
+    "throughputTasksPerSec": 121.58054711246201,
+    "averageResponseTimeMs": 6.257,
+    "averageWaitingTimeMs": 0.006,
+    "averageResourceUtilizationPercent": 8.228304607902736,
+    "loadBalancingStdDevMs": 282.2468604506483,
+    "schedulingOverheadMs": 5.12543,
     "workerDetails": {
       "vm-1": {
         "workerId": "vm-1",
         "tasksExecuted": 82,
-        "totalBusyTimeMs": 254.69679200000016,
-        "utilizationPercent": 3.5009868316151223
+        "totalBusyTimeMs": 262.51772700000004,
+        "utilizationPercent": 3.1917048875379948
       },
       "vm-2": {
         "workerId": "vm-2",
         "tasksExecuted": 82,
-        "totalBusyTimeMs": 257.57926700000013,
-        "utilizationPercent": 3.540608481099658
+        "totalBusyTimeMs": 276.09356999999994,
+        "utilizationPercent": 3.3567607294832817
       },
       "vm-3": {
         "workerId": "vm-3",
         "tasksExecuted": 130,
-        "totalBusyTimeMs": 469.20756900000015,
-        "utilizationPercent": 6.44958857731959
+        "totalBusyTimeMs": 518.5729689999998,
+        "utilizationPercent": 6.304838528875378
       },
       "vm-4": {
         "workerId": "vm-4",
         "tasksExecuted": 138,
-        "totalBusyTimeMs": 678.3128270000002,
-        "utilizationPercent": 9.32388765635739
+        "totalBusyTimeMs": 750.8774989999997,
+        "utilizationPercent": 9.129209714285711
       },
       "vm-5": {
         "workerId": "vm-5",
         "tasksExecuted": 134,
-        "totalBusyTimeMs": 565.1577230000003,
-        "utilizationPercent": 7.7684910378006915
+        "totalBusyTimeMs": 671.5194199999996,
+        "utilizationPercent": 8.164369848024311
       },
       "vm-6": {
         "workerId": "vm-6",
         "tasksExecuted": 145,
-        "totalBusyTimeMs": 907.2566160000002,
-        "utilizationPercent": 12.470881319587631
+        "totalBusyTimeMs": 964.2055280000006,
+        "utilizationPercent": 11.722863562310039
       },
       "vm-7": {
         "workerId": "vm-7",
         "tasksExecuted": 145,
-        "totalBusyTimeMs": 899.4771799999999,
-        "utilizationPercent": 12.363947491408933
+        "totalBusyTimeMs": 955.9493880000003,
+        "utilizationPercent": 11.622484960486327
       },
       "vm-8": {
         "workerId": "vm-8",
         "tasksExecuted": 144,
-        "totalBusyTimeMs": 911.8723299999998,
-        "utilizationPercent": 12.534327560137454
+        "totalBusyTimeMs": 1014.4883309999999,
+        "utilizationPercent": 12.334204632218844
       }
     }
   }
