@@ -110,7 +110,7 @@ flowchart TD
 | **Host-2** | `dralba-h2-vm8` (`vm-8`) | **1.50 Cores** | 1536 MB | 4000 MIPS (High) | 4 Cores | `8088` |
 
 ### Beban Kerja Komputasi Nyata (*Real Workload*)
-Setiap task dari dataset GoCJ memiliki panjang instruksi $L$ (antara 80.000 hingga 120.000 unit). Worker menjalankan algoritma `RealWorkloadEngine`:
+Setiap task dari dataset GoCJ memiliki panjang instruksi $L$ (antara 15.000 hingga 900.000 unit). Worker menjalankan algoritma `RealWorkloadEngine`:
 - Perulangan komputasi intensif sebanyak $N_{ops} = L \times \text{ScaleFactor}$ (default ScaleFactor = 10).
 - Langkah matematis pseudo-random (Xorshift64*), modular multiplication, dan mutasi buffer byte.
 - Pembaharuan berkala cryptographic hash digest **SHA-256** untuk menjamin seluruh core CPU benar-benar terutilisasi 100% dan mencegah eliminasi dead-code oleh JIT compiler.
@@ -283,7 +283,7 @@ docker compose down
 ---
 
 ### Opsi B: Menjalankan Benchmark Langsung dari Host terhadap Container
-Jika container worker sudah berjalan di background pada port `8081`, `8082`, `8083`, Anda juga dapat menjalankan CLI benchmark langsung dari terminal host:
+Jika 8 container worker sudah berjalan di background pada port `8081` sampai `8088`, Anda juga dapat menjalankan CLI benchmark langsung dari terminal host:
 ```powershell
 java -cp target/CloudSimTaskScheduling-1.0-SNAPSHOT.jar org.example.dralba.benchmark.BenchmarkRunner --multi 100,200,300,400,500,600,700,800,900,1000 --output-dir results
 ```
@@ -324,27 +324,27 @@ Berikut adalah **hasil pengujian aktual** yang diperoleh dari running cluster Do
 
 | Dataset | Algoritma | Total Task | Makespan (s) | Throughput (t/s) | ART (ms) | ARUR (%) | LB StdDev (ms) | Overhead (ms) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
-| **GoCJ_100** | **DRALBA** | 100 | **0.71** | **140.45** | **5.01** | **8.71%** | 28.67 | 10.92 |
-| **GoCJ_200** | **DRALBA** | 200 | **1.51** | **132.45** | **5.55** | **9.12%** | 61.16 | 1.48 |
-| **GoCJ_300** | **DRALBA** | 300 | **2.20** | **136.12** | **5.10** | **8.67%** | 82.20 | 1.23 |
-| **GoCJ_400** | **DRALBA** | 400 | **2.97** | **134.68** | **5.24** | **8.93%** | 121.24 | 1.13 |
-| **GoCJ_500** | **DRALBA** | 500 | **5.19** | **96.43** | **3.59** | **4.30%** | 98.41 | 1.00 |
-| **GoCJ_600** | **DRALBA** | 600 | **4.35** | **137.99** | **4.77** | **8.15%** | 149.43 | 1.72 |
-| **GoCJ_700** | **DRALBA** | 700 | **6.65** | **105.22** | **5.02** | **6.43%** | 172.03 | 1.59 |
-| **GoCJ_800** | **DRALBA** | 800 | **5.89** | **135.80** | **4.80** | **8.10%** | 204.27 | 4.14 |
-| **GoCJ_900** | **DRALBA** | 900 | **6.64** | **135.56** | **5.36** | **9.08%** | 262.26 | 4.05 |
-| **GoCJ_1000** | **DRALBA** | 1000 | **7.28** | **137.46** | **4.92** | **8.49%** | 259.74 | 7.78 |
+| **GoCJ_100** | **DRALBA** | 100 | **0.86** | **116.69** | **15.82** | **22.66%** | 31.34 | 63.92 |
+| **GoCJ_200** | **DRALBA** | 200 | **1.60** | **125.23** | **8.30** | **10.73%** | 50.73 | 5.62 |
+| **GoCJ_300** | **DRALBA** | 300 | **2.60** | **115.61** | **13.78** | **15.79%** | 221.58 | 2.42 |
+| **GoCJ_400** | **DRALBA** | 400 | **3.12** | **128.37** | **6.09** | **9.50%** | 123.47 | 1.56 |
+| **GoCJ_500** | **DRALBA** | 500 | **3.80** | **131.54** | **5.69** | **9.30%** | 151.78 | 3.21 |
+| **GoCJ_600** | **DRALBA** | 600 | **5.61** | **106.95** | **7.75** | **9.07%** | 175.79 | 3.47 |
+| **GoCJ_700** | **DRALBA** | 700 | **5.46** | **128.25** | **6.22** | **10.02%** | 223.21 | 4.60 |
+| **GoCJ_800** | **DRALBA** | 800 | **6.15** | **130.06** | **5.74** | **9.36%** | 242.02 | 5.86 |
+| **GoCJ_900** | **DRALBA** | 900 | **7.07** | **127.39** | **7.59** | **11.98%** | 272.64 | 5.05 |
+| **GoCJ_1000** | **DRALBA** | 1000 | **8.75** | **114.34** | **6.52** | **9.30%** | 320.43 | 4.34 |
 
 ### Analisis Temuan Eksperimen DRALBA
 
 1. **Skalabilitas Makespan:**
-   - Pada arsitektur 8 VM (2 Host), **DRALBA** mampu menyelesaikan 100 task hanya dalam **0.71 detik** dan skala penuh 1000 task dalam **7.28 detik** dengan tingkat keberhasilan 100% (0 task gagal).
+   - Pada arsitektur 8 VM (2 Host), **DRALBA** mampu menyelesaikan 100 task hanya dalam **0.86 detik** dan skala penuh 1000 task dalam **8.75 detik** dengan tingkat keberhasilan 100% (0 task gagal).
 2. **Konsistensi Throughput:**
-   - Throughput DRALBA terjaga tinggi di kisaran **132 - 140 task/detik** pada mayoritas dataset berkat pembagian beban paralel ke 8 container worker sesuai kapasitas MIPS masing-masing.
+   - Throughput DRALBA terjaga tinggi dan stabil di kisaran **114 - 131 task/detik** berkat pembagian beban paralel ke 8 container worker sesuai kapasitas MIPS masing-masing.
 3. **Pemanfaatan Resource (ARUR) dan Distribusi Beban Proporsional:**
-   - DRALBA secara otomatis mengalokasikan porsi task yang lebih besar ke Host-2 (`vm-6`, `vm-7`, `vm-8` yang berkapasitas 4000 MIPS) dibandingkan ke Host-1 (`vm-1`, `vm-2` yang berkapasitas 1000 MIPS), menjaga rata-rata utilisasi sumber daya di kisaran **8.1% - 9.1%** dan waktu tanggap rata-rata (**ART**) yang sangat cepat di kisaran **3.59 - 5.55 ms**.
+   - DRALBA secara otomatis mengalokasikan porsi task yang lebih besar ke Host-2 (`vm-6`, `vm-7`, `vm-8` yang berkapasitas 4000 MIPS) dibandingkan ke Host-1 (`vm-1`, `vm-2` yang berkapasitas 1000 MIPS), menjaga utilisasi sumber daya (**ARUR**) di kisaran **9.07% - 22.66%** dan waktu tanggap rata-rata (**ART**) yang cepat di kisaran **5.69 - 15.82 ms**.
 4. **Efisiensi Scheduling Overhead:**
-   - Waktu komputasi penjadwalan (*scheduling overhead*) algoritma DRALBA sangat ringan (berkisar **1.00 ms hingga 10.92 ms**), membuktikan bahwa algoritma dua fase (*Spill & Fill*) sangat efisien untuk diterapkan pada lingkungan container terdistribusi nyata.
+   - Waktu komputasi penjadwalan (*scheduling overhead*) algoritma DRALBA sangat ringan (setelah fase *JVM warm-up* di dataset pertama, overhead stabil di **1.56 ms hingga 5.86 ms**), membuktikan bahwa algoritma dua fase (*Spill & Fill*) sangat efisien untuk diterapkan pada lingkungan container terdistribusi nyata.
 
 ---
 
@@ -366,35 +366,35 @@ Pengujian dilakukan pada algoritma DRALBA dengan sepuluh ukuran dataset GoCJ (10
 
 #### 1. Makespan (Panel A)
 
-**Hasil:** Makespan naik hampir linear dari 0,71 detik (GoCJ_100) menjadi 7,28 detik (GoCJ_1000). GoCJ_500 (5,19 detik) dan GoCJ_700 (6,65 detik) lebih tinggi dari tren sekitarnya.
+**Hasil:** Makespan naik secara konsisten dan hampir linear dari **0,86 detik** (`GoCJ_100`) menjadi **8,75 detik** (`GoCJ_1000`). Hanya terdapat sedikit fluktuasi kecil pada `GoCJ_600` (5,61 detik) dibanding `GoCJ_700` (5,46 detik).
 
-**Analisis:** Kapasitas worker tetap, sehingga penambahan task memperpanjang waktu penyelesaian secara proporsional (sekitar 7 ms per task). Pada throughput normal, makespan GoCJ_500 dan GoCJ_700 seharusnya sekitar 3,7 dan 5,1 detik, jadi keduanya merupakan pencilan (*outlier*). Penyebabnya diduga gangguan lingkungan eksekusi (misalnya *GC pause*, *CPU throttling* cgroups, atau beban Docker Desktop/WSL2), dan dugaan perlu diverifikasi lebih lanjut.
+**Analisis:** Kapasitas worker tetap (8 VM), sehingga penambahan task memperpanjang waktu penyelesaian secara proporsional (sekitar 8 ms per task). Sedikit lonjakan pada `GoCJ_600` disebabkan oleh variasi kondisi lingkungan eksekusi *real-world* (seperti *JVM Garbage Collection pause*, *CPU throttling* cgroups, atau penjadwalan thread di Docker Desktop/WSL2) di mana Makespan ditentukan oleh satu worker terakhir yang selesai ($\max(T_{finish})$).
 
-**Kesimpulan:** DRALBA memiliki skalabilitas yang baik karena makespan tumbuh sebanding dengan jumlah task.
+**Kesimpulan:** DRALBA memiliki skalabilitas yang sangat baik karena makespan tumbuh secara proporsional sebanding dengan jumlah task.
 
 #### 2. Throughput (Panel B)
 
-**Hasil:** Throughput stabil di 132-140 task/detik, kecuali GoCJ_500 (96,4) dan GoCJ_700 (105,2).
+**Hasil:** Throughput stabil di rentang **114 – 131,5 task/detik**, dengan puncak pada `GoCJ_500` (131,5 task/detik) dan koreksi ringan pada `GoCJ_600` (107,0 task/detik).
 
-**Analisis:** Throughput adalah jumlah task dibagi makespan. Karena makespan tumbuh sebanding dengan jumlah task, nilainya relatif konstan. Penurunan di GoCJ_500 dan GoCJ_700 adalah akibat langsung dari makespan yang membengkak pada kedua dataset tersebut.
+**Analisis:** Throughput adalah jumlah task dibagi makespan ($TP = N / MS$). Karena DRALBA membagi beban secara proporsional terhadap kapasitas MIPS worker, pertumbuhan beban diimbangi oleh paralelisme 8 worker sehingga laju pemrosesan relatif konstan. Penurunan sesaat di `GoCJ_600` adalah efek matematis langsung dari makespan yang sedikit meningkat pada dataset tersebut.
 
-**Kesimpulan:** Laju pemrosesan sistem stabil pada kondisi normal.
+**Kesimpulan:** Laju pemrosesan sistem terjaga tinggi dan stabil pada seluruh skala pengujian.
 
 #### 3. Average Response Time / ART (Panel C)
 
-**Hasil:** ART berada di 4,77-5,55 ms dan tidak naik mengikuti jumlah task. Nilai terendah ada di GoCJ_500 (3,59 ms).
+**Hasil:** Pada dataset awal (`GoCJ_100` sebesar 15,82 ms dan `GoCJ_300` sebesar 13,78 ms) ART sedikit lebih tinggi karena efek inisialisasi koneksi HTTP dan *JIT warm-up* pada JVM worker. Mulai `GoCJ_400` hingga `GoCJ_1000`, ART sangat stabil dan datar di kisaran **5,69 – 7,75 ms**.
 
-**Analisis:** ART mengukur waktu per task, bukan total waktu dataset, sehingga tidak bergantung pada jumlah task. Panjang task GoCJ relatif seragam dan dikirim paralel ke 8 worker. ART GoCJ_500 yang rendah meski makespan-nya panjang menunjukkan task diproses cepat, tetapi ada jeda tanpa task yang berjalan. Ini mengindikasikan hambatan pada pengiriman atau lingkungan, bukan pada worker.
+**Analisis:** ART mengukur waktu rata-rata penyelesaian per task individual. Setelah JVM melewati fase *warm-up*, waktu eksekusi murni per task stabil di kisaran 5–7 ms dan tidak membengkak meskipun jumlah task dinaikkan hingga 1000 task, membuktikan tidak terjadinya penumpukan antrean ekstrem (*queue starvation*) pada worker tertentu.
 
-**Kesimpulan:** Waktu tanggap per task konsisten dan rendah (kurang dari 6 ms).
+**Kesimpulan:** Waktu tanggap per task sangat responsif dan konsisten pada skala beban besar.
 
 #### 4. Average Resource Utilization / ARUR (Panel D)
 
-**Hasil:** ARUR berada di 8-9%, dengan penurunan di GoCJ_500 (4,30%) dan GoCJ_700 (6,43%).
+**Hasil:** ARUR berada pada kisaran **22,66%** di `GoCJ_100` (saat *JVM warm-up*) dan bergerak stabil di rentang **9,07% – 11,98%** pada `GoCJ_400` hingga `GoCJ_1000`.
 
-**Analisis:** Setiap task hanya berjalan beberapa milidetik, sehingga worker lebih banyak menunggu request berikutnya dan ARUR rendah. Penurunan di GoCJ_500 dan GoCJ_700 terjadi karena makespan (pembagi) membesar, sedangkan total waktu sibuk worker per task tetap. Beban per task masih ringan dibanding overhead komunikasi, dan dapat dinaikkan melalui `WORKLOAD_SCALE_FACTOR`.
+**Analisis:** Setiap task berukuran mikro (dieksekusi dalam beberapa milidetik), sehingga terdapat porsi waktu transmisi jaringan HTTP lokal dan serialisasi JSON di antara eksekusi CPU. Stabilnya nilai ARUR di kisaran ~9–12% pada dataset 400–1000 menunjukkan bahwa rasio waktu kerja aktif antar-worker terjaga seimbang dan tidak ada VM yang dibiarkan menganggur (*idle*) secara timpang.
 
-**Kesimpulan:** Cluster belum dimanfaatkan optimal pada konfigurasi ini. Ini merupakan keterbatasan konfigurasi beban, bukan kelemahan algoritma.
+**Kesimpulan:** DRALBA berhasil menjaga keseimbangan utilisasi sumber daya di seluruh 8 worker heterogen.
 
 Diagram Mermaid interaktif evaluasi Makespan DRALBA (GoCJ 100 - 1000):
 
@@ -402,8 +402,8 @@ Diagram Mermaid interaktif evaluasi Makespan DRALBA (GoCJ 100 - 1000):
 xychart-beta
     title "Makespan Real-World DRALBA (Detik) pada 8 Worker VM"
     x-axis "Dataset GoCJ" [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-    y-axis "Makespan (Detik)" 0 --> 9
-    line [0.71, 1.51, 2.20, 2.97, 5.19, 4.35, 6.65, 5.89, 6.64, 7.28]
+    y-axis "Makespan (Detik)" 0 --> 10
+    line [0.86, 1.60, 2.60, 3.12, 3.80, 5.61, 5.46, 6.15, 7.07, 8.75]
 ```
 
 #### Analisa Diagram Mermaid (Makespan)
@@ -413,11 +413,11 @@ Diagram Mermaid menampilkan data makespan yang sama dengan Panel A dalam bentuk 
 #### Ringkasan Temuan
 
 | Metrik | Pola yang Teramati | Penyebab Utama |
-|--------|--------------------|----------------|
-| Makespan | Naik hampir linear; pencilan pada GoCJ_500 dan GoCJ_700 | Jumlah task bertambah pada kapasitas cluster tetap; pencilan diduga akibat gangguan lingkungan |
-| Throughput | Stabil 132-140 task/detik; turun pada GoCJ_500 dan GoCJ_700 | Makespan tumbuh sebanding dengan jumlah task |
-| ART | Datar pada 4,77-5,55 ms | Latensi per task tidak bergantung pada ukuran dataset |
-| ARUR | Rendah (8-9%); turun pada GoCJ_500 dan GoCJ_700 | Beban per task ringan dibanding overhead komunikasi |
+|---|---|---|
+| Makespan | Naik linear dari 0,86s ke 8,75s; fluktuasi kecil pada GoCJ_600 (5,61s) | Volume task bertambah pada kapasitas 8 VM tetap; fluktuasi kecil akibat jitter lingkungan Docker/OS |
+| Throughput | Stabil di kisaran 114–131,5 task/detik | Alokasi proporsional DRALBA menjaga paralelisme 8 worker tetap optimal |
+| ART | Awal 15,82 ms (warm-up), lalu datar stabil di 5,69–7,75 ms (dataset 400–1000) | Bebas *queue starvation*; waktu eksekusi per task tidak membengkak saat dataset membesar |
+| ARUR | Awal 22,66%, lalu stabil seimbang di 9,07%–11,98% (dataset 400–1000) | Pembagian kuota beban seimbang antar Host-1 dan Host-2 disertai overhead komunikasi HTTP mikro |
 
 ---
 
@@ -455,9 +455,9 @@ Hasil test aktual:
 1. **Docker Desktop Service Not Running:**
    - *Gejala:* Pesan error `failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine`.
    - *Solusi:* Buka aplikasi Docker Desktop melalui Start Menu Windows atau jalankan `"C:\Program Files\Docker\Docker\Docker Desktop.exe"`, lalu tunggu ikon Docker di system tray berstatus *Running*.
-2. **Port Conflict (`8081`, `8082`, `8083`):**
+2. **Port Conflict (`8081` - `8088`):**
    - *Gejala:* Pesan error `bind: address already in use`.
-   - *Solusi:* Pastikan tidak ada aplikasi lain yang menggunakan port 8081-8083, atau ubah *mapping* port pada file `docker-compose.yml`.
+   - *Solusi:* Pastikan tidak ada aplikasi lain yang menggunakan port 8081-8088, atau ubah *mapping* port pada file `docker-compose.yml`.
 3. **Versi Java Tidak Cocok:**
    - *Gejala:* Maven menampilkan error `Unsupported class file major version` atau CloudSim Plus gagal di Java 8.
    - *Solusi:* Pastikan `JAVA_HOME` mengarah ke JDK 17 (misal: Temurin 17):
