@@ -360,6 +360,42 @@ File gambar diagram disimpan di `results/comparison_metrics.png`:
 
 ![Evaluasi Metrik DRALBA](results/comparison_metrics.png)
 
+### Analisis Hasil Uji Coba
+
+Pengujian dilakukan pada algoritma DRALBA dengan sepuluh ukuran dataset GoCJ (100 hingga 1000 task) pada cluster Docker yang terdiri dari 1 datacenter, 2 host, dan 8 worker VM heterogen. Gambar `comparison_metrics.png` memuat empat panel yang masing-masing menampilkan satu metrik evaluasi. Hasil pengamatan dan analisis setiap panel diuraikan sebagai berikut.
+
+#### 1. Makespan (Panel A)
+
+**Hasil:** Makespan naik hampir linear dari 0,71 detik (GoCJ_100) menjadi 7,28 detik (GoCJ_1000). GoCJ_500 (5,19 detik) dan GoCJ_700 (6,65 detik) lebih tinggi dari tren sekitarnya.
+
+**Analisis:** Kapasitas worker tetap, sehingga penambahan task memperpanjang waktu penyelesaian secara proporsional (sekitar 7 ms per task). Pada throughput normal, makespan GoCJ_500 dan GoCJ_700 seharusnya sekitar 3,7 dan 5,1 detik, jadi keduanya merupakan pencilan (*outlier*). Penyebabnya diduga gangguan lingkungan eksekusi (misalnya *GC pause*, *CPU throttling* cgroups, atau beban Docker Desktop/WSL2), dan dugaan perlu diverifikasi lebih lanjut.
+
+**Kesimpulan:** DRALBA memiliki skalabilitas yang baik karena makespan tumbuh sebanding dengan jumlah task.
+
+#### 2. Throughput (Panel B)
+
+**Hasil:** Throughput stabil di 132-140 task/detik, kecuali GoCJ_500 (96,4) dan GoCJ_700 (105,2).
+
+**Analisis:** Throughput adalah jumlah task dibagi makespan. Karena makespan tumbuh sebanding dengan jumlah task, nilainya relatif konstan. Penurunan di GoCJ_500 dan GoCJ_700 adalah akibat langsung dari makespan yang membengkak pada kedua dataset tersebut.
+
+**Kesimpulan:** Laju pemrosesan sistem stabil pada kondisi normal.
+
+#### 3. Average Response Time / ART (Panel C)
+
+**Hasil:** ART berada di 4,77-5,55 ms dan tidak naik mengikuti jumlah task. Nilai terendah ada di GoCJ_500 (3,59 ms).
+
+**Analisis:** ART mengukur waktu per task, bukan total waktu dataset, sehingga tidak bergantung pada jumlah task. Panjang task GoCJ relatif seragam dan dikirim paralel ke 8 worker. ART GoCJ_500 yang rendah meski makespan-nya panjang menunjukkan task diproses cepat, tetapi ada jeda tanpa task yang berjalan. Ini mengindikasikan hambatan pada pengiriman atau lingkungan, bukan pada worker.
+
+**Kesimpulan:** Waktu tanggap per task konsisten dan rendah (kurang dari 6 ms).
+
+#### 4. Average Resource Utilization / ARUR (Panel D)
+
+**Hasil:** ARUR berada di 8-9%, dengan penurunan di GoCJ_500 (4,30%) dan GoCJ_700 (6,43%).
+
+**Analisis:** Setiap task hanya berjalan beberapa milidetik, sehingga worker lebih banyak menunggu request berikutnya dan ARUR rendah. Penurunan di GoCJ_500 dan GoCJ_700 terjadi karena makespan (pembagi) membesar, sedangkan total waktu sibuk worker per task tetap. Beban per task masih ringan dibanding overhead komunikasi, dan dapat dinaikkan melalui `WORKLOAD_SCALE_FACTOR`.
+
+**Kesimpulan:** Cluster belum dimanfaatkan optimal pada konfigurasi ini. Ini merupakan keterbatasan konfigurasi beban, bukan kelemahan algoritma.
+
 Diagram Mermaid interaktif evaluasi Makespan DRALBA (GoCJ 100 - 1000):
 
 ```mermaid
@@ -369,6 +405,19 @@ xychart-beta
     y-axis "Makespan (Detik)" 0 --> 9
     line [0.71, 1.51, 2.20, 2.97, 5.19, 4.35, 6.65, 5.89, 6.64, 7.28]
 ```
+
+#### Analisa Diagram Mermaid (Makespan)
+
+Diagram Mermaid menampilkan data makespan yang sama dengan Panel A dalam bentuk grafik interaktif yang dirender langsung oleh GitHub. Pola dan analisisnya sama dengan yang telah diuraikan pada bagian Makespan.
+
+#### Ringkasan Temuan
+
+| Metrik | Pola yang Teramati | Penyebab Utama |
+|--------|--------------------|----------------|
+| Makespan | Naik hampir linear; pencilan pada GoCJ_500 dan GoCJ_700 | Jumlah task bertambah pada kapasitas cluster tetap; pencilan diduga akibat gangguan lingkungan |
+| Throughput | Stabil 132-140 task/detik; turun pada GoCJ_500 dan GoCJ_700 | Makespan tumbuh sebanding dengan jumlah task |
+| ART | Datar pada 4,77-5,55 ms | Latensi per task tidak bergantung pada ukuran dataset |
+| ARUR | Rendah (8-9%); turun pada GoCJ_500 dan GoCJ_700 | Beban per task ringan dibanding overhead komunikasi |
 
 ---
 
